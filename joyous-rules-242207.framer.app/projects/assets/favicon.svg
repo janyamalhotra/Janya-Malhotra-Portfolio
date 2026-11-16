@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
+  <defs>
+    <style>
+      @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,500&amp;display=swap');
+      .hero-j-glyph {
+        font-family: 'Cormorant Garamond', Georgia, serif;
+        font-style: italic;
+        font-weight: 500;
+        font-size: 56px;
+        fill: #F5CB5C;
+        text-anchor: middle;
+        dominant-baseline: central;
+      }
+    </style>
+  </defs>
+  <!-- Simple, elegant italic capital J matching the homepage hero name in butter-yellow, transparent background -->
+  <text x="35" y="32" class="hero-j-glyph">J</text>
+</svg>

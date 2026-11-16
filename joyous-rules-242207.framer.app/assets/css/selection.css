@@ -1,0 +1,30 @@
+/* ==========================================================================
+   GLOBAL TEXT SELECTION STYLING — JANYA MALHOTRA PORTFOLIO
+   Custom butter-yellow text selection highlight across all pages and components
+   Selection background: #FFEDA8 (butter yellow)
+   Selected text colour: #000000 (black)
+   ========================================================================== */
+
+::selection {
+  background-color: #FFEDA8 !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+::-moz-selection {
+  background-color: #FFEDA8 !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+*::selection {
+  background-color: #FFEDA8 !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+*::-moz-selection {
+  background-color: #FFEDA8 !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}

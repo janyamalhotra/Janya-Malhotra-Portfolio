@@ -86,6 +86,25 @@
 
   });
 
+  function normalizeUrl(u) {
+    if (typeof u !== "string") return u;
+    return u.replace(/(\.\.\/)+framerusercontent\.com/g, "./framerusercontent.com");
+  }
+  var cssProto = CSSStyleDeclaration.prototype;
+  var origSetProperty = cssProto.setProperty;
+  cssProto.setProperty = function (prop, val, priority) {
+    return origSetProperty.call(this, prop, normalizeUrl(val), priority);
+  };
+  var bgDesc = Object.getOwnPropertyDescriptor(cssProto, "backgroundImage");
+  if (bgDesc && bgDesc.set) {
+    var origBgSet = bgDesc.set;
+    Object.defineProperty(cssProto, "backgroundImage", {
+      get: bgDesc.get,
+      set: function (v) { origBgSet.call(this, normalizeUrl(v)); },
+      configurable: true,
+    });
+  }
+
 })();</script>
 
 	<meta charset="utf-8">
@@ -2099,7 +2118,7 @@ nav a,nav p,nav span{color:var(--portfolio-nav-ink,#1C261D)!important;text-shado
 
 .meadow-layer{position:absolute;inset:0;z-index:1;overflow:hidden;background:none;will-change:opacity}
 
-.meadow-photo{position:absolute;inset:-2%;z-index:0;background-size:cover;background-position:center 58%;background-repeat:no-repeat;transform:scale(1);transform-origin:76% 25%;filter:none;pointer-events:none}
+.meadow-photo{position:absolute;inset:-2%;z-index:0;background-size:cover;background-position:center 58%;background-repeat:no-repeat;background-image:linear-gradient(180deg,rgba(27,38,28,.06),rgba(27,38,28,.03)),url('./framerusercontent.com/images/50uIRoagjEMc64cP6lfMZCgBbmI.png');transform:scale(1);transform-origin:76% 25%;filter:none;pointer-events:none}
 
 .grass-canvas,.ray-layer{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 

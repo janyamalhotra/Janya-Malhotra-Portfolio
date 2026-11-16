@@ -1,0 +1,1993 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Talking Stage | Janya Malhotra Portfolio</title>
+    <meta name="description" content="Talking Stage: A Compelling Board-Card Game designed to spark engaging conversation starters and banter.">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-page: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --bg-subtle: #F3EFEA;
+            --ink-primary: #1C261D;
+            --ink-secondary: #526054;
+            --ink-muted: #7A897C;
+            --project-accent: #1976D2;
+            --project-accent-soft: rgba(25, 118, 210, 0.12);
+            --project-accent-hover: #0D47A1;
+            --border-subtle: rgba(28, 38, 29, 0.09);
+            --border-medium: rgba(28, 38, 29, 0.18);
+            --shadow-card: 0 12px 32px -6px rgba(35, 45, 36, 0.08), 0 2px 6px rgba(0,0,0,0.03);
+            --shadow-hover: 0 18px 44px -8px rgba(35, 45, 36, 0.14), 0 4px 12px rgba(0,0,0,0.05);
+            --content-max-width: 840px;
+            --sidebar-width: 290px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--ink-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            letter-spacing: -0.011em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* --- TOP READING PROGRESS BAR --- */
+        .case-study-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: var(--project-accent);
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+
+        /* --- LAYOUT SHELL --- */
+        .case-study-shell {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- DESKTOP STICKY SIDEBAR --- */
+        .case-study-sidebar {
+            width: var(--sidebar-width);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 48px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid var(--border-subtle);
+            background-color: var(--bg-page);
+            z-index: 100;
+        }
+
+        .sidebar-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .sidebar-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--ink-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .sidebar-back-link:hover {
+            color: var(--project-accent);
+            transform: translateX(-3px);
+        }
+
+        .back-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .sidebar-back-link:hover .back-icon {
+            transform: translateX(-2px);
+        }
+
+        .sidebar-toc {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .toc-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            color: var(--ink-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 450;
+            transition: all 0.2s ease;
+        }
+
+        .toc-bullet {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--ink-muted);
+            opacity: 0.4;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .toc-link:hover {
+            color: var(--ink-primary);
+            background-color: var(--bg-subtle);
+        }
+
+        .toc-link:hover .toc-bullet {
+            opacity: 0.8;
+            background-color: var(--project-accent);
+        }
+
+        .toc-link.is-active {
+            color: var(--project-accent);
+            font-weight: 600;
+            background-color: var(--bg-subtle);
+        }
+
+        .toc-link.is-active .toc-bullet {
+            background-color: var(--project-accent);
+            opacity: 1;
+            box-shadow: 0 0 0 3px var(--project-accent-soft);
+        }
+
+        .sidebar-footer {
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
+
+        /* --- MOBILE HEADER & TOC --- */
+        .mobile-nav-bar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background-color: rgba(250, 248, 245, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 20px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 900;
+        }
+
+        .mobile-back-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--ink-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .mobile-toc-toggle {
+            background: none;
+            border: 1px solid var(--border-medium);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink-secondary);
+            cursor: pointer;
+        }
+
+        .mobile-toc-drawer {
+            display: none;
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-page);
+            border-bottom: 1px solid var(--border-medium);
+            padding: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+            z-index: 899;
+            box-shadow: var(--shadow-card);
+        }
+
+        .mobile-toc-drawer.is-open {
+            display: block;
+        }
+
+        .mobile-toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mobile-toc-link {
+            color: var(--ink-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            padding: 6px 0;
+        }
+
+        /* --- MAIN READING COLUMN --- */
+        .case-study-content {
+            flex: 1;
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            padding: 80px 48px 120px 48px;
+            width: 100%;
+        }
+
+        /* --- 01. PROJECT TITLE --- */
+        .case-study-main-header {
+            margin-bottom: 36px;
+        }
+
+        .project-category-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--project-accent);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .project-title {
+            font-size: clamp(34px, 4.4vw, 46px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            color: var(--ink-primary);
+        }
+
+        /* --- 02. HERO IMAGE --- */
+        .hero-media-wrapper {
+            margin-bottom: 64px;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+        }
+
+        .hero-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        /* --- SECTION BASE STYLES --- */
+        .case-study-section {
+            margin-bottom: 80px;
+            scroll-margin-top: 40px;
+        }
+
+        .section-heading {
+            font-size: 24px;
+            font-weight: 650;
+            letter-spacing: -0.015em;
+            color: var(--ink-primary);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-body {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            color: var(--ink-secondary);
+            font-size: 16px;
+            line-height: 1.68;
+        }
+
+        .section-body p {
+            margin: 0;
+        }
+
+        /* --- OVERVIEW & DETAILS GRID --- */
+        .overview-lead {
+            font-size: 18px;
+            line-height: 1.62;
+            color: var(--ink-primary);
+            margin-bottom: 32px;
+            font-weight: 420;
+        }
+
+        .overview-details-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .details-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .details-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ink-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .details-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink-primary);
+        }
+
+        /* --- VIEW IT LIVE BUTTON --- */
+        .live-link-container {
+            margin-top: 12px;
+        }
+
+        .live-link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--project-accent);
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px var(--project-accent-soft);
+        }
+
+        .live-link-button:hover {
+            background-color: var(--project-accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px var(--project-accent-soft);
+        }
+
+        /* --- PROBLEM POINTS --- */
+        .problem-points-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .problem-points-list li {
+            position: relative;
+            padding-left: 24px;
+            color: var(--ink-secondary);
+            font-size: 15px;
+        }
+
+        .problem-points-list li::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--project-accent);
+        }
+
+        /* --- MEDIA AND VIDEO BLOCKS --- */
+        .custom-section-media-stack {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .media-block {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .media-block img, .section-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-block {
+            background-color: #000000;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .section-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            outline: none;
+        }
+
+        /* Card grid for 2-col and 3-col layouts */
+        .card-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        /* --- CONCLUSION PULL-QUOTE --- */
+        .conclusion-pullquote {
+            margin-top: 24px;
+            padding: 24px 28px;
+            background-color: var(--bg-card);
+            border-left: 3px solid var(--project-accent);
+            border-radius: 0 12px 12px 0;
+            box-shadow: var(--shadow-card);
+        }
+
+        .conclusion-quote-text {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--ink-primary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* --- SECTION INLINE CAROUSEL (e.g. Episode structure) --- */
+        .inline-carousel-wrapper {
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .inline-carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            border-radius: 14px;
+            scrollbar-width: thin;
+        }
+
+        .inline-carousel-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+        }
+
+        
+        /* --- TALKING STAGE RULE BOOK DOCUMENT VIEWER --- */
+        .rulebook-document-viewer {
+            margin: 28px auto;
+            max-width: 520px;
+            width: 100%;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            box-shadow: var(--shadow-card);
+            overflow: hidden;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            box-sizing: border-box;
+        }
+
+        .rulebook-document-viewer:focus-visible {
+            border-color: var(--project-accent);
+            box-shadow: 0 0 0 3px var(--project-accent-soft), var(--shadow-card);
+        }
+
+        .rulebook-viewport {
+            width: 100%;
+            overflow: hidden;
+            position: relative;
+            background: #FAF8F5;
+        }
+
+        .rulebook-track {
+            display: flex;
+            transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+            width: 100%;
+            will-change: transform;
+        }
+
+        .rulebook-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            user-select: none;
+        }
+
+        .rulebook-slide-frame {
+            width: 100%;
+            height: clamp(320px, 44vh, 420px);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 14px;
+            box-sizing: border-box;
+        }
+
+        .rulebook-page-img {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: 4px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .rulebook-bottom-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 18px;
+            border-top: 1px solid var(--border-subtle);
+            background: var(--bg-card);
+            gap: 12px;
+        }
+
+        .rulebook-info {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            min-width: 0;
+            overflow: hidden;
+        }
+
+        .rulebook-page-badge {
+            display: inline-block;
+            font-weight: 700;
+            font-size: 11px;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--project-accent);
+            background: var(--project-accent-soft);
+            padding: 3px 8px;
+            border-radius: 4px;
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .rulebook-page-title {
+            font-size: 13.5px;
+            font-weight: 600;
+            color: var(--ink-primary);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .rulebook-controls {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            flex-shrink: 0;
+        }
+
+        .rulebook-counter {
+            font-size: 12.5px;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            color: var(--ink-muted);
+            font-variant-numeric: tabular-nums;
+            white-space: nowrap;
+        }
+
+        .rulebook-nav-btns {
+            display: flex;
+            gap: 6px;
+        }
+
+        .rulebook-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            border: 1px solid var(--border-medium);
+            background: var(--bg-card);
+            color: var(--ink-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            padding: 0;
+        }
+
+        .rulebook-nav-btn:hover:not(:disabled) {
+            background: var(--project-accent);
+            color: #FFFFFF;
+            border-color: var(--project-accent);
+            transform: scale(1.05);
+        }
+
+        .rulebook-nav-btn:disabled,
+        .rulebook-nav-btn.is-disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        /* --- CASE STUDY CAROUSEL (BEHIND THE SCENES) --- */
+        .case-study-carousel {
+            width: 100%;
+            max-width: 100%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            margin: 28px 0;
+            box-sizing: border-box;
+            outline: none;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .case-study-carousel:focus-visible {
+            border-color: var(--project-accent);
+            box-shadow: 0 0 0 3px var(--project-accent-soft), var(--shadow-card);
+        }
+
+        .carousel-viewport {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+            will-change: transform;
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .carousel-slide-image-wrap {
+            width: 100%;
+            background-color: #FAF8F5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .bts-slide-image-wrap {
+            height: clamp(320px, 48vh, 460px);
+            padding: 16px;
+            box-sizing: border-box;
+        }
+
+        .carousel-slide-image {
+            max-width: 100%;
+            max-height: 100%;
+            width: auto;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            margin: auto;
+            border-radius: 6px;
+        }
+
+        .carousel-slide-info {
+            padding: 22px 26px;
+            border-top: 1px solid var(--border-subtle);
+            background-color: var(--bg-card);
+        }
+
+        .carousel-slide-title {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 16.5px;
+            font-weight: 650;
+            color: var(--ink-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .carousel-slide-desc {
+            font-size: 14px;
+            line-height: 1.6;
+            color: var(--ink-secondary);
+            margin: 0;
+        }
+
+        .carousel-controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 12px 26px;
+            border-top: 1px solid var(--border-subtle);
+            background-color: var(--bg-subtle);
+        }
+
+        .carousel-counter {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--ink-muted);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .carousel-nav-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-medium);
+            background-color: var(--bg-card);
+            color: var(--ink-primary);
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .carousel-nav-btn:hover:not(:disabled) {
+            background-color: var(--project-accent);
+            color: #FFFFFF;
+            border-color: var(--project-accent);
+            transform: scale(1.05);
+        }
+
+        .carousel-nav-btn:disabled,
+        .carousel-nav-btn.is-disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
+
+        @media (max-width: 600px) {
+            .rulebook-slide-frame {
+                height: clamp(280px, 40vh, 340px);
+                padding: 10px;
+            }
+            .rulebook-bottom-bar {
+                padding: 10px 14px;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+            .rulebook-info {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            .rulebook-controls {
+                width: 100%;
+                justify-content: space-between;
+                margin-top: 4px;
+            }
+            .bts-slide-image-wrap {
+                height: clamp(260px, 38vh, 320px);
+                padding: 10px;
+            }
+            .carousel-slide-info {
+                padding: 16px 18px;
+            }
+            .carousel-controls-bar {
+                padding: 10px 18px;
+            }
+        }
+
+        /* --- OTHER PROJECTS CAROUSEL --- */
+        .carousel-container {
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .carousel-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-btn:hover {
+            border-color: var(--project-accent);
+            color: var(--project-accent);
+            background: var(--bg-subtle);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .carousel-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--border-medium);
+            transition: all 0.2s ease;
+        }
+
+        .carousel-dot.is-active {
+            background-color: var(--project-accent);
+            width: 18px;
+            border-radius: 4px;
+        }
+
+        .other-projects-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 12px;
+            scrollbar-width: thin;
+        }
+
+        .other-projects-track::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .other-projects-track::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: 3px;
+        }
+
+        .other-project-card {
+            flex: 0 0 320px; max-width: 320px; display: flex; flex-direction: column;
+            scroll-snap-align: start;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .other-project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-hitbox {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            height: 100%;
+        }
+
+        .other-card-image-wrap {
+            width: 100%;
+            height: 152px;
+            overflow: hidden;
+            background-color: var(--bg-subtle, #FAF8F5);
+        }
+
+        .other-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .other-card-content {
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px; justify-content: space-between;
+            flex: 1;
+        }
+
+        .other-card-year {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .other-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .other-card-summary {
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0.88;
+            margin: 0;
+            flex: 1;
+        }
+
+        .other-card-link-text {
+            margin-top: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .arrow-glyph {
+            transition: transform 0.2s ease;
+        }
+
+        .card-hitbox:hover .arrow-glyph {
+            transform: translateX(4px);
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
+            .case-study-sidebar {
+                width: 240px;
+                padding: 36px 24px;
+            }
+            .case-study-content {
+                padding: 60px 32px 100px 32px;
+            }
+            .overview-details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .case-study-sidebar {
+                display: none;
+            }
+            .mobile-nav-bar {
+                display: flex;
+            }
+            .case-study-content {
+                padding: 84px 20px 80px 20px;
+            }
+            .overview-details-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-grid-2, .card-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title {
+                font-size: 28px;
+            }
+            .section-heading {
+                font-size: 20px;
+            }
+            .overview-lead {
+                font-size: 16px;
+            }
+            .other-project-card {
+                flex: 0 0 260px;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="../assets/css/global-nav.css">
+    <link rel="stylesheet" href="../assets/css/global-footer.css">
+  <link rel="stylesheet" href="../../assets/css/lightbox.css">
+</head>
+<body>
+    <div class="case-study-progress" id="case-study-progress" aria-hidden="true"></div>
+
+    <!-- Global Navigation Bar (Top-Right) -->
+    <nav class="case-study-global-nav" aria-label="Main Navigation">
+        <ul class="case-study-global-nav-links">
+            <li><a href="../index.html#projects" class="case-study-global-nav-link is-active" aria-current="page">Projects</a></li>
+            <li><a href="../about/index.html" class="case-study-global-nav-link">About Me</a></li>
+            <li><a href="../index.html#contact" class="case-study-global-nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="case-study-shell">
+        <!-- Desktop Sticky Left Sidebar -->
+        <aside class="case-study-sidebar" aria-label="Table of contents">
+            <div class="sidebar-inner">
+                <a href="../index.html#projects" class="sidebar-back-link">
+                    <svg class="back-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                    <span>All projects</span>
+                </a>
+
+                <nav class="sidebar-toc" aria-label="Table of contents">
+                    <span class="toc-label">Contents</span>
+                    <ul class="toc-list" id="toc-list">
+                        <li><a href="#overview" class="toc-link is-active"><span class="toc-bullet"></span><span class="toc-title-text">Overview</span></a></li>
+                        <li><a href="#problem" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">Problem</span></a></li>
+                        <li><a href="#task-and-constraints" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">Task & Constraints</span></a></li>
+                        <li><a href="#game-summary" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">Game Summary</span></a></li>
+                        <li><a href="#rule-book" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">Rule Book</span></a></li>
+                        <li><a href="#1-pointer-cards" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">1-Pointer Cards</span></a></li>
+                        <li><a href="#2-pointer-cards" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">2-Pointer Cards</span></a></li>
+                        <li><a href="#3-pointer-cards" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">3-Pointer Cards</span></a></li>
+                        <li><a href="#dare-tiles" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">Dare Tiles</span></a></li>
+                        <li><a href="#drowning-tiles" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">Drowning Tiles</span></a></li>
+                        <li><a href="#user-testing" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">User Testing</span></a></li>
+                        <li><a href="#behind-the-scenes" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">Behind the Scenes</span></a></li>
+                        <li><a href="#ending-thoughts" class="toc-link"><span class="toc-bullet"></span><span class="toc-title-text">Ending Thoughts</span></a></li>
+                    </ul>
+                </nav>
+            </div>
+            <div class="sidebar-footer">
+                <span>© 2026 Janya Malhotra</span>
+            </div>
+        </aside>
+
+        <!-- Mobile Header Bar -->
+        <header class="mobile-nav-bar">
+            <a href="../index.html#projects" class="mobile-back-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                <span>All projects</span>
+            </a>
+            <button type="button" class="mobile-toc-toggle" id="mobile-toc-toggle" aria-expanded="false" aria-controls="mobile-toc-drawer">Contents ▾</button>
+        </header>
+
+        <!-- Mobile TOC Drawer -->
+        <div class="mobile-toc-drawer" id="mobile-toc-drawer" aria-hidden="true">
+            <ul class="mobile-toc-list">
+            <li><a href="#overview" class="mobile-toc-link">Overview</a></li>
+            <li><a href="#problem" class="mobile-toc-link">Problem</a></li>
+            <li><a href="#task-and-constraints" class="mobile-toc-link">Task & Constraints</a></li>
+            <li><a href="#game-summary" class="mobile-toc-link">Game Summary</a></li>
+            <li><a href="#rule-book" class="mobile-toc-link">Rule Book</a></li>
+            <li><a href="#1-pointer-cards" class="mobile-toc-link">1-Pointer Cards</a></li>
+            <li><a href="#2-pointer-cards" class="mobile-toc-link">2-Pointer Cards</a></li>
+            <li><a href="#3-pointer-cards" class="mobile-toc-link">3-Pointer Cards</a></li>
+            <li><a href="#dare-tiles" class="mobile-toc-link">Dare Tiles</a></li>
+            <li><a href="#drowning-tiles" class="mobile-toc-link">Drowning Tiles</a></li>
+            <li><a href="#user-testing" class="mobile-toc-link">User Testing</a></li>
+            <li><a href="#behind-the-scenes" class="mobile-toc-link">Behind the Scenes</a></li>
+            <li><a href="#ending-thoughts" class="mobile-toc-link">Ending Thoughts</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Reading Column -->
+        <main class="case-study-content" id="main-content">
+            <!-- 01. Title Header -->
+            <header class="case-study-main-header">
+                <span class="project-category-eyebrow">PRODUCT DESIGN &bull; CONVERSATION BOARD GAME</span>
+                <h1 class="project-title">Talking Stage</h1>
+            </header>
+
+            <!-- 02. Hero Cover -->
+            <figure class="hero-media-wrapper">
+                <img src="../../framerusercontent.com/images/talking-stage-hero.jpg" alt="Talking Stage: A Compelling Board-Card game designed to spark engaging conversation starters and banter" class="hero-media" loading="eager" decoding="async">
+            </figure>
+
+            <!-- 03. Overview -->
+            <section id="overview" class="case-study-section section-overview">
+                <h2 class="section-heading">Overview</h2>
+                <p class="overview-lead">In a world filled with online interactions and meet-ups, Talking Stage brings 2-5 players together in person. Players answer a series of personal questions as they move towards the finish; the first person to reach it wins.</p>
+                <div class="section-body">
+                    <p>Talking Stage is a conversation-driven board game designed to spark engaging conversations and help people get to know each other in a fun, natural, low-pressure way. Players can play on a first date, at a party, or with a group of friends when bored.</p>
+                </div>
+
+                <div class="overview-details-grid">
+                    <div class="details-item">
+                        <span class="details-label">Project Type</span>
+                        <span class="details-value">Product Design</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Category</span>
+                        <span class="details-value">Conversation Board Game</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Timeline</span>
+                        <span class="details-value">2024 (2 weeks)</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">My Role</span>
+                        <span class="details-value">Creative Lead &amp; Product Designer</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Project Format</span>
+                        <span class="details-value">Group Project</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Target Audience</span>
+                        <span class="details-value">16+</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Tools</span>
+                        <span class="details-value">Canva</span>
+                    </div>
+                </div>
+
+                <div class="custom-section-media-stack">
+                    <figure class="media-block">
+                        <img src="../../framerusercontent.com/images/talking-stage-overview.jpg" alt="Talking Stage physical board game and question-card deck overview" loading="lazy" decoding="async">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- 04. Problem -->
+            <section id="problem" class="case-study-section section-problem">
+                <h2 class="section-heading">Problem</h2>
+                <div class="section-body">
+                    <p>Meeting people today is easy, but getting to know them genuinely is still hard. Most conversations stay on the surface, especially when people are meeting for the first time or trying to move past awkward small talk.</p>
+                    <p>Online interactions often fail to build deep real-world rapport, while party environments lack low-stakes conversational structures that encourage curiosity and genuine vulnerability without putting players on the spot.</p>
+                    <ul class="problem-points-list">
+                        <li><strong>Surface-level friction:</strong> First dates and group meet-ups frequently stall at predictable small talk without meaningful emotional connection.</li>
+                        <li><strong>Digital disconnection:</strong> In-person social presence is easily eroded by phone checking when conversations lose momentum.</li>
+                        <li><strong>Psychological safety:</strong> Players need scaffolded escalation from lighthearted trivia to vulnerable questions to feel comfortable sharing openly.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- SECTION: Task and Constraints -->
+            <section id="task-and-constraints" class="case-study-section custom-section">
+                <h2 class="section-heading">Task and Constraints</h2>
+                <div class="section-body">
+                    <p>The design task was to create an engaging physical board game with original cards and playful mechanics that make people talk openly, laugh, and find common ground. The primary constraints required balancing conversational intimacy with playful competitiveness, creating physical prototypes within a strict 2-week timeline, and ensuring clear card typography that is immediately readable across a table.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Game Summary -->
+            <section id="game-summary" class="case-study-section custom-section">
+                <h2 class="section-heading">Game Summary</h2>
+                <div class="section-body">
+                    <p>In a world filled with online interactions and meet-ups, Talking Stage brings 2-5 players together in person. Players answer a series of personal questions to move up the board towards the finish line; the first person to reach it is declared the winner.</p>
+                    <p>Before the game begins, each player receives 2 Power Cards that can be played at any point. Players roll the die to advance across Question Tiles, Action Tiles, Dare Tiles, and Drowning Tiles, constantly navigating rewards and setbacks.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Rule Book -->
+            <section id="rule-book" class="case-study-section custom-section">
+                <h2 class="section-heading">Rule Book</h2>
+                <div class="section-body">
+                    <p>The game rules establish turn sequences, tile interactions, point systems, and edge cases (such as modified questions when a player does not meet a criterion). The tactile rulebook was designed with a high-contrast checkered border aesthetic for quick table reference.</p>
+                </div>
+                
+                <div class="rulebook-document-viewer" id="rulebook-viewer" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Rule Book Interactive Carousel">
+                    <div class="rulebook-viewport" id="rulebook-viewport">
+                        <div class="rulebook-track" id="rulebook-track">
+                            <!-- Slide 1: Page 1 -->
+                            <div class="rulebook-slide is-active" data-index="0" role="group" aria-roledescription="slide" aria-label="Page 1 of 4: Overview &amp; Game Setup">
+                                <div class="rulebook-slide-frame">
+                                    <img src="../../framerusercontent.com/images/talking-stage-rulebook-page-1.jpg" alt="Talking Stage Rule Book - Page 1: Overview &amp; Game Setup" class="rulebook-page-img" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Page 2 (talking-stage-rulebook-page-4.jpg) -->
+                            <div class="rulebook-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="Page 2 of 4: Question &amp; Dare Tile Rules">
+                                <div class="rulebook-slide-frame">
+                                    <img src="../../framerusercontent.com/images/talking-stage-rulebook-page-4.jpg" alt="Talking Stage Rule Book - Page 2: Question &amp; Dare Tile Rules" class="rulebook-page-img" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Page 3 (talking-stage-rulebook-page-2.jpg) -->
+                            <div class="rulebook-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="Page 3 of 4: Drowning Tile Rules">
+                                <div class="rulebook-slide-frame">
+                                    <img src="../../framerusercontent.com/images/talking-stage-rulebook-page-2.jpg" alt="Talking Stage Rule Book - Page 3: Drowning Tile Rules" class="rulebook-page-img" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+
+                            <!-- Slide 4: Page 4 (talking-stage-rulebook-page-3.jpg) -->
+                            <div class="rulebook-slide" data-index="3" role="group" aria-roledescription="slide" aria-label="Page 4 of 4: Frequently Asked Questions">
+                                <div class="rulebook-slide-frame">
+                                    <img src="../../framerusercontent.com/images/talking-stage-rulebook-page-3.jpg" alt="Talking Stage Rule Book - Page 4: Frequently Asked Questions" class="rulebook-page-img" loading="lazy" decoding="async">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Integrated Info & Controls Bar directly below the image -->
+                    <div class="rulebook-bottom-bar">
+                        <div class="rulebook-info">
+                            <span class="rulebook-page-badge" id="rulebook-page-badge">Page 01</span>
+                            <span class="rulebook-page-title" id="rulebook-page-title">Overview &amp; Game Setup</span>
+                        </div>
+                        <div class="rulebook-controls">
+                            <span class="rulebook-counter" id="rulebook-counter" aria-live="polite">01 / 04</span>
+                            <div class="rulebook-nav-btns">
+                                <button type="button" class="rulebook-nav-btn prev-btn" id="rulebook-prev-btn" aria-label="Previous Rule Book Page" disabled>
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                                </button>
+                                <button type="button" class="rulebook-nav-btn next-btn" id="rulebook-next-btn" aria-label="Next Rule Book Page">
+                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECTION: 1-Pointer Cards -->
+            <section id="1-pointer-cards" class="case-study-section custom-section">
+                <h2 class="section-heading">1-Pointer Cards</h2>
+                <div class="section-body">
+                    <p>1-Pointer Cards are low-pressure conversation starters designed to break the ice quickly without putting players on the spot. Example: <em>&ldquo;What&rsquo;s one question you would ask a dog if they could talk?&rdquo;</em> Answering advances the player 1 step on the board.</p>
+                </div>
+                <div class="custom-section-media-stack">
+                    <figure class="media-block">
+                        <img src="../../framerusercontent.com/images/talking-stage-1-pointer-cards.jpg" alt="Talking Stage 1-Pointer question cards" loading="lazy" decoding="async">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- SECTION: 2-Pointer Cards -->
+            <section id="2-pointer-cards" class="case-study-section custom-section">
+                <h2 class="section-heading">2-Pointer Cards</h2>
+                <div class="section-body">
+                    <p>2-Pointer Cards ask players to share opinions, lighter preferences, or playful dilemmas. Example: <em>&ldquo;Would you rather always say what you&rsquo;re thinking on a date or hear everything your date is thinking?&rdquo;</em> Answering advances the player 2 steps.</p>
+                </div>
+                <div class="custom-section-media-stack">
+                    <figure class="media-block">
+                        <img src="../../framerusercontent.com/images/talking-stage-2-pointer-cards.jpg" alt="Talking Stage 2-Pointer question cards" loading="lazy" decoding="async">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- SECTION: 3-Pointer Cards -->
+            <section id="3-pointer-cards" class="case-study-section custom-section">
+                <h2 class="section-heading">3-Pointer Cards</h2>
+                <div class="section-body">
+                    <p>3-Pointer Cards delve into deeper reflections, past relationships, and candid personal insights. Example: <em>&ldquo;What&rsquo;s something you knew was over before you were ready to let it go?&rdquo;</em> Answering successfully advances the player 3 steps.</p>
+                </div>
+                <div class="custom-section-media-stack">
+                    <figure class="media-block">
+                        <img src="../../framerusercontent.com/images/talking-stage-3-pointer-cards.jpg" alt="Talking Stage 3-Pointer question cards" loading="lazy" decoding="async">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- SECTION: Dare Tiles -->
+            <section id="dare-tiles" class="case-study-section custom-section">
+                <h2 class="section-heading">Dare Tiles</h2>
+                <div class="section-body">
+                    <p>When landing on a Dare Tile, players must complete a quick physical or verbal challenge displayed on the board. Example: <em>&ldquo;Talk in a chosen accent for 3 minutes straight.&rdquo;</em> Failing to perform the dare requires moving back 4 steps.</p>
+                </div>
+                <div class="custom-section-media-stack">
+                    <figure class="media-block">
+                        <img src="../../framerusercontent.com/images/talking-stage-dare-tiles.jpg" alt="Talking Stage Dare Tile board challenge" loading="lazy" decoding="async">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- SECTION: Drowning Tiles -->
+            <section id="drowning-tiles" class="case-study-section custom-section">
+                <h2 class="section-heading">Drowning Tiles</h2>
+                <div class="section-body">
+                    <p>Drowning Tiles trigger high-stakes impromptu mini-games: Skip a Turn, Try Jinx, Echo Tile, Trivia, Ask Away, or Two Truths &amp; a Lie. If the player fails their challenge, they move back 2 steps.</p>
+                </div>
+                <div class="custom-section-media-stack">
+                    <figure class="media-block">
+                        <img src="../../framerusercontent.com/images/talking-stage-drowning-tiles.jpg" alt="Talking Stage Drowning Tile random challenges and mechanics" loading="lazy" decoding="async">
+                    </figure>
+                </div>
+            </section>
+
+            <!-- SECTION: User Testing -->
+            <section id="user-testing" class="case-study-section custom-section">
+                <h2 class="section-heading">User Testing</h2>
+                <div class="section-body">
+                    <p>Once the game was assembled, we played through it to understand how the mechanics worked in an actual social setting. The playtesting received very positive responses, with players enjoying the combination of conversation prompts, playful challenges and the competitive element of the board game. It helped us see how the game could encourage people to interact more naturally while keeping the experience engaging in its own right.</p>
+                </div>
+            </section>
+
+            <!-- SECTION: Behind the Scenes -->
+            <section id="behind-the-scenes" class="case-study-section custom-section">
+                <h2 class="section-heading">Behind the Scenes</h2>
+                <div class="section-body">
+                    <p>A look into the iterative physical making process, from initial paper sketches and layout calculations to laser cutting, tile placement, and the final assembled board game.</p>
+                </div>
+
+                <div class="case-study-carousel bts-carousel" id="bts-carousel" tabindex="0" role="region" aria-roledescription="carousel" aria-label="Behind the Scenes Process Carousel">
+                    <div class="carousel-viewport" id="bts-viewport">
+                        <div class="carousel-track" id="bts-track">
+                            <!-- Slide 1 -->
+                            <div class="carousel-slide is-active" data-index="0" role="group" aria-roledescription="slide" aria-label="Slide 1 of 7: Initial Board Concept / Ideation Sketch">
+                                <div class="carousel-slide-image-wrap bts-slide-image-wrap">
+                                    <img src="../../framerusercontent.com/images/talking-stage-bts-01-ideation.jpg" alt="Initial hand-drawn pencil ideation sketch of the Talking Stage board layout" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h4 class="carousel-slide-title">Initial Board Concept / Ideation Sketch</h4>
+                                    <p class="carousel-slide-desc">First exploratory pencil sketch mapping the path layout, movement flow, and tile distribution across the board.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2 -->
+                            <div class="carousel-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="Slide 2 of 7: Route &amp; Step Calculation">
+                                <div class="carousel-slide-image-wrap bts-slide-image-wrap">
+                                    <img src="../../framerusercontent.com/images/talking-stage-bts-02-layout-sketch.jpg" alt="Pencil diagram calculating step routes, directional arrows, and board grid turns" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h4 class="carousel-slide-title">Route &amp; Step Calculation</h4>
+                                    <p class="carousel-slide-desc">Detailed grid calculation diagram determining tile counts, directional turns, and game progression pacing.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3 -->
+                            <div class="carousel-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="Slide 3 of 7: Precision Laser Cutting">
+                                <div class="carousel-slide-image-wrap bts-slide-image-wrap">
+                                    <img src="../../framerusercontent.com/images/talking-stage-bts-03-laser-cutting.jpg" alt="Laser cutting machine cutting precision acrylic and wood tiles for the board game" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h4 class="carousel-slide-title">Precision Laser Cutting</h4>
+                                    <p class="carousel-slide-desc">Laser cutting the modular wooden board tiles to precise dimensions for seamless interlocking and board assembly.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4 -->
+                            <div class="carousel-slide" data-index="3" role="group" aria-roledescription="slide" aria-label="Slide 4 of 7: Tile Distribution &amp; Path Mapping">
+                                <div class="carousel-slide-image-wrap bts-slide-image-wrap">
+                                    <img src="../../framerusercontent.com/images/talking-stage-bts-04-tile-strategy.jpg" alt="Tiles arranged on blue board base with green crosses and red question marks" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h4 class="carousel-slide-title">Tile Distribution &amp; Path Mapping</h4>
+                                    <p class="carousel-slide-desc">Laying out physical tiles on the baseboard with coded annotations (Q for Questions, X for Dares) to test pacing and balance.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 5 -->
+                            <div class="carousel-slide" data-index="4" role="group" aria-roledescription="slide" aria-label="Slide 5 of 7: Physical Assembly &amp; Stacking">
+                                <div class="carousel-slide-image-wrap bts-slide-image-wrap">
+                                    <img src="../../framerusercontent.com/images/talking-stage-bts-05-building-board.jpg" alt="Hands carefully placing colored wooden tiles onto the board surface during assembly" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h4 class="carousel-slide-title">Physical Assembly &amp; Stacking</h4>
+                                    <p class="carousel-slide-desc">Hand-mounting multi-layer wooden tiles, applying color accents, and building elevation differences onto the game track.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 6 -->
+                            <div class="carousel-slide" data-index="5" role="group" aria-roledescription="slide" aria-label="Slide 6 of 7: Track Arrangement &amp; Finishing">
+                                <div class="carousel-slide-image-wrap bts-slide-image-wrap">
+                                    <img src="../../framerusercontent.com/images/talking-stage-bts-06-refining-layout.jpg" alt="Completed tile arrangement across the sky-blue board base inspected for alignment" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h4 class="carousel-slide-title">Track Arrangement &amp; Finishing</h4>
+                                    <p class="carousel-slide-desc">Finalizing tile positioning, verifying clearance between pathways, and inspecting tactile alignment across the board surface.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 7 -->
+                            <div class="carousel-slide" data-index="6" role="group" aria-roledescription="slide" aria-label="Slide 7 of 7: Final Board Game">
+                                <div class="carousel-slide-image-wrap bts-slide-image-wrap">
+                                    <img src="../../framerusercontent.com/images/talking-stage-bts-07-final-game.jpg" alt="Photograph of the completed physical Talking Stage board game" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async" style="object-fit: contain; object-position: center; max-height: 100%; width: auto; margin: auto;">
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h4 class="carousel-slide-title">Final Board Game</h4>
+                                    <p class="carousel-slide-desc">Photograph of the completed physical Talking Stage board game, complete with its blue base, winding pathway, question tiles, dare spaces, and illustrated details.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-controls-bar">
+                        <span class="carousel-counter" id="bts-counter" aria-live="polite">01 / 07</span>
+                        <div class="carousel-nav-btns">
+                            <button type="button" class="carousel-nav-btn prev-btn" id="bts-prev-btn" aria-label="Previous slide" disabled>
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 18l-6-6 6-6"/></svg>
+                            </button>
+                            <button type="button" class="carousel-nav-btn next-btn" id="bts-next-btn" aria-label="Next slide">
+                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18l6-6-6-6"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 12. Conclusion -->
+            <section id="ending-thoughts" class="case-study-section section-conclusion"><a id="conclusion" aria-hidden="true" style="position:absolute;visibility:hidden;"></a>
+                <h2 class="section-heading">Ending Thoughts</h2>
+                <div class="section-body">
+                    <p>Talking Stage demonstrated that intentional conversational mechanics can transform awkward social hesitation into authentic laughter and vulnerable connection.</p>
+                </div>
+                <div class="conclusion-pullquote">
+                    <blockquote class="conclusion-quote-text">
+                        "In a world increasingly mediated by screens, simple physical game structures can create the psychological safety needed to put our phones away and genuinely talk to each other."
+                    </blockquote>
+                </div>
+            </section>
+
+            <!-- 13. Other Projects Carousel -->
+            <section id="other-projects" class="case-study-section section-other-projects">
+                <h2 class="section-heading">Other Projects</h2>
+                <div class="carousel-container" id="other-projects-carousel" role="region" aria-label="Other projects carousel">
+                    <div class="carousel-controls">
+                        <button type="button" class="carousel-btn prev-btn" id="carousel-prev" aria-label="Previous project">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                        </button>
+                        <div class="carousel-dots" id="carousel-dots">
+                            <span class="carousel-dot is-active"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                            <span class="carousel-dot"></span>
+                        </div>
+                        <button type="button" class="carousel-btn next-btn" id="carousel-next" aria-label="Next project">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13l5-5-5-5"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="other-projects-track" id="other-projects-carousel" tabindex="0" role="region" aria-label="Other projects carousel">
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="isl-studio">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="isl-studio/index.html" class="card-hitbox" aria-label="View case study for ISL Studio">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/isl-studio-hero.jpg" alt="ISL Studio preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2026</span>
+                                        <span class="other-card-category">Digital Platform</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">ISL Studio</h3>
+                                    <p class="other-card-desc">A working Indian Sign Language practice platform combining webcam gesture recognition and interactive feedback for beginner ISL learners.</p>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="image-toolset">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="image-toolset/index.html" class="card-hitbox" aria-label="View case study for Image Toolset">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/image-tool-hero.jpg" alt="Image Toolset preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2026</span>
+                                        <span class="other-card-category">Creative Tool</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">Image Toolset</h3>
+                                    <p class="other-card-desc">An interactive image-making tool exploring variable-based visuals, creative experimentation and flexible visual treatments.</p>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="sikka">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="sikka/index.html" class="card-hitbox" aria-label="View case study for Sikka">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/UTaWoRlQBMZD1JHaFXtCsT88E.png" alt="Sikka preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2025</span>
+                                        <span class="other-card-category">Financial Literacy Platform</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">Sikka</h3>
+                                    <p class="other-card-desc">A Financial Literacy App designed to help young adults to know about finance literacy through games, fun articles, blogs, and reels.</p>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="freshline">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="freshline/index.html" class="card-hitbox" aria-label="View case study for Freshline">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/freshline-hero.jpg" alt="Freshline preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2024</span>
+                                        <span class="other-card-category">Service Design</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">Freshline</h3>
+                                    <p class="other-card-desc">This Vertical Farm Mobile Van business is designed to bridge the gap between locally grown, fresh produce and urban consumers, creating direct access between vertical farms and the community.</p>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="slow-improvements">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="slow-improvements/index.html" class="card-hitbox" aria-label="View case study for Slow Improvements">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/793P1J5iWjHKouPZwExf3MWgs.png" alt="Slow Improvements preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2026</span>
+                                        <span class="other-card-category">Podcast Platform</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">Slow Improvements</h3>
+                                    <p class="other-card-desc">A podcast and companion platform proposing small, intentional changes as an alternative to the pressure of instant self-improvement.</p>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+    <div id="footer-boundary" class="footer-boundary" aria-hidden="true"></div>
+        </main>
+    </div>
+
+<!-- Global Portfolio Gradient Footer -->
+    <footer id="contact" class="portfolio-gradient-footer" role="contentinfo" aria-label="Website footer and contact">
+      <div class="footer-gradient-backdrop" aria-hidden="true">
+        <div class="footer-gradient-layer"></div>
+        <div class="footer-gradient-noise"></div>
+        <canvas id="footer-ascii-canvas" class="footer-ascii-canvas"></canvas>
+      </div>
+
+      <div class="footer-shell">
+        <div class="footer-top-grid">
+          <!-- Left Column: Short Closing Statement & Contact Note -->
+          <div class="footer-brand-col">
+            <h2 class="footer-closing-statement">Let's bring ideas to life.</h2>
+            <p class="footer-contact-note">Have an idea in mind? I'd love to hear about it. Reach out through email. I'm also open to freelance projects and creative collaborations.</p>
+          </div>
+
+          <!-- Right Column: Navigation & Connect -->
+          <div class="footer-nav-col footer-connect-col">
+            <div class="footer-links-group">
+              <span class="footer-group-heading">CONNECT</span>
+              <ul class="footer-nav-list">
+                <li>
+                  <a href="mailto:janya.malhotra2@gmail.com" class="footer-link">
+                    <span class="footer-link-icon">✉</span>
+                    <span>janya.malhotra2@gmail.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/janya-malhotra-2a85aa438" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    <span class="footer-link-icon">↗</span>
+                    <span>LinkedIn</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="../assets/Janya-Malhotra-Resume.pdf" target="_blank" rel="noopener noreferrer" download="Janya-Malhotra-Resume.pdf" class="footer-link footer-resume-link">
+                    <span class="footer-link-icon">↓</span>
+                    <span>Download Resume (PDF)</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Copyright -->
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">
+            © <span id="footer-dynamic-year">2026</span> Janya Malhotra. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <script>
+    (function() {
+        'use strict';
+
+        // 1. Top Reading Progress Bar
+        const progressBar = document.getElementById('case-study-progress');
+        function updateProgress() {
+            if (!progressBar) return;
+            const scrollY = window.scrollY || window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+                const pct = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+                progressBar.style.width = pct.toFixed(2) + '%';
+            }
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+
+        // 2. Active Section Highlighting in Sidebar (TOC)
+        const sections = document.querySelectorAll('.case-study-section');
+        const tocLinks = document.querySelectorAll('.toc-link');
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const id = entry.target.getAttribute('id');
+                        tocLinks.forEach(link => {
+                            if (link.getAttribute('href') === '#' + id) {
+                                link.classList.add('is-active');
+                            } else {
+                                link.classList.remove('is-active');
+                            }
+                        });
+                    }
+                });
+            }, {
+                rootMargin: '-10% 0px -70% 0px'
+            });
+
+            sections.forEach(sec => {
+                if (sec.id !== 'other-projects') {
+                    observer.observe(sec);
+                }
+            });
+        }
+
+        // 3. Mobile TOC Drawer Toggle
+        const toggleBtn = document.getElementById('mobile-toc-toggle');
+        const drawer = document.getElementById('mobile-toc-drawer');
+        if (toggleBtn && drawer) {
+            toggleBtn.addEventListener('click', () => {
+                const isOpen = drawer.classList.contains('is-open');
+                if (isOpen) {
+                    drawer.classList.remove('is-open');
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                } else {
+                    drawer.classList.add('is-open');
+                    toggleBtn.setAttribute('aria-expanded', 'true');
+                }
+            });
+
+            const mobileLinks = drawer.querySelectorAll('.mobile-toc-link');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    drawer.classList.remove('is-open');
+                    toggleBtn.setAttribute('aria-expanded', 'false');
+                });
+            });
+        }
+
+        // 4. Other Projects Carousel
+        const track = document.getElementById('other-projects-track');
+        const prevBtn = document.getElementById('carousel-prev');
+        const nextBtn = document.getElementById('carousel-next');
+        const dots = document.querySelectorAll('#carousel-dots .carousel-dot');
+
+        if (track && prevBtn && nextBtn) {
+            const cardWidth = 320; // 300px + 20px gap
+
+            prevBtn.addEventListener('click', () => {
+                track.scrollBy({ left: -cardWidth, behavior: 'smooth' });
+            });
+
+            nextBtn.addEventListener('click', () => {
+                track.scrollBy({ left: cardWidth, behavior: 'smooth' });
+            });
+
+            track.addEventListener('scroll', () => {
+                const maxScroll = track.scrollWidth - track.clientWidth;
+                if (maxScroll <= 0) return;
+                const scrollFraction = track.scrollLeft / maxScroll;
+                const activeIndex = Math.min(dots.length - 1, Math.round(scrollFraction * (dots.length - 1)));
+                dots.forEach((dot, idx) => {
+                    if (idx === activeIndex) {
+                        dot.classList.add('is-active');
+                    } else {
+                        dot.classList.remove('is-active');
+                    }
+                });
+            }, { passive: true });
+        }
+
+        // 5. Generic Inline Carousel (e.g., Episode structure)
+        const inlineCarousels = document.querySelectorAll('.inline-carousel-wrapper');
+        inlineCarousels.forEach(wrapper => {
+            const inTrack = wrapper.querySelector('.inline-carousel-track');
+            const inPrev = wrapper.querySelector('.inline-prev-btn');
+            const inNext = wrapper.querySelector('.inline-next-btn');
+            const inDots = wrapper.querySelectorAll('.inline-carousel-dot');
+
+            if (inTrack && inPrev && inNext) {
+                inPrev.addEventListener('click', () => {
+                    inTrack.scrollBy({ left: -inTrack.clientWidth, behavior: 'smooth' });
+                });
+                inNext.addEventListener('click', () => {
+                    inTrack.scrollBy({ left: inTrack.clientWidth, behavior: 'smooth' });
+                });
+                inTrack.addEventListener('scroll', () => {
+                    const slideIdx = Math.round(inTrack.scrollLeft / inTrack.clientWidth);
+                    inDots.forEach((dot, idx) => {
+                        if (idx === slideIdx) dot.classList.add('is-active');
+                        else dot.classList.remove('is-active');
+                    });
+                }, { passive: true });
+            }
+        });
+    
+            // 6. Rule Book Interactive Document Viewer Carousel
+        (function() {
+            const viewer = document.getElementById('rulebook-viewer');
+            if (!viewer) return;
+
+            const track = document.getElementById('rulebook-track');
+            const slides = viewer.querySelectorAll('.rulebook-slide');
+            const prevBtn = document.getElementById('rulebook-prev-btn');
+            const nextBtn = document.getElementById('rulebook-next-btn');
+            const pageBadge = document.getElementById('rulebook-page-badge');
+            const pageTitle = document.getElementById('rulebook-page-title');
+            const counter = document.getElementById('rulebook-counter');
+
+            if (!track || !slides.length) return;
+
+            const pageData = [
+                { badge: 'Page 01', title: 'Overview & Game Setup' },
+                { badge: 'Page 02', title: 'Question & Dare Tile Rules' },
+                { badge: 'Page 03', title: 'Drowning Tile Rules' },
+                { badge: 'Page 04', title: 'Frequently Asked Questions' }
+            ];
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function updateSlide(newIndex) {
+                if (newIndex < 0) newIndex = 0;
+                if (newIndex >= totalSlides) newIndex = totalSlides - 1;
+                currentIndex = newIndex;
+
+                track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+
+                slides.forEach((slide, idx) => {
+                    if (idx === currentIndex) {
+                        slide.classList.add('is-active');
+                        slide.removeAttribute('aria-hidden');
+                    } else {
+                        slide.classList.remove('is-active');
+                        slide.setAttribute('aria-hidden', 'true');
+                    }
+                });
+
+                if (pageBadge && pageData[currentIndex]) {
+                    pageBadge.textContent = pageData[currentIndex].badge;
+                }
+                if (pageTitle && pageData[currentIndex]) {
+                    pageTitle.textContent = pageData[currentIndex].title;
+                }
+                if (counter) {
+                    counter.textContent = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+                }
+
+                if (prevBtn) {
+                    prevBtn.disabled = (currentIndex === 0);
+                    if (currentIndex === 0) prevBtn.classList.add('is-disabled');
+                    else prevBtn.classList.remove('is-disabled');
+                }
+                if (nextBtn) {
+                    nextBtn.disabled = (currentIndex === totalSlides - 1);
+                    if (currentIndex === totalSlides - 1) nextBtn.classList.add('is-disabled');
+                    else nextBtn.classList.remove('is-disabled');
+                }
+            }
+
+            updateSlide(0);
+
+            if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); updateSlide(currentIndex - 1); });
+            if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); updateSlide(currentIndex + 1); });
+
+            viewer.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    updateSlide(currentIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    updateSlide(currentIndex + 1);
+                }
+            });
+
+            let startX = 0;
+            let startY = 0;
+            let isSwiping = false;
+
+            viewer.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                    isSwiping = true;
+                }
+            }, { passive: true });
+
+            viewer.addEventListener('touchmove', (e) => {
+                if (!isSwiping || e.touches.length !== 1) return;
+                const diffX = e.touches[0].clientX - startX;
+                const diffY = e.touches[0].clientY - startY;
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+                    if (e.cancelable) e.preventDefault();
+                }
+            }, { passive: false });
+
+            viewer.addEventListener('touchend', (e) => {
+                if (!isSwiping) return;
+                isSwiping = false;
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = endX - startX;
+                const diffY = endY - startY;
+                if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX < 0) updateSlide(currentIndex + 1);
+                    else updateSlide(currentIndex - 1);
+                }
+            }, { passive: true });
+        })();
+
+        // 7. Behind the Scenes Process Carousel
+        (function() {
+            const carousel = document.getElementById('bts-carousel');
+            if (!carousel) return;
+
+            const track = document.getElementById('bts-track');
+            const slides = carousel.querySelectorAll('.carousel-slide');
+            const prevBtn = document.getElementById('bts-prev-btn');
+            const nextBtn = document.getElementById('bts-next-btn');
+            const counter = document.getElementById('bts-counter');
+
+            if (!track || !slides.length) return;
+
+            let currentIndex = 0;
+            const totalSlides = slides.length;
+
+            function updateSlide(newIndex) {
+                if (newIndex < 0) newIndex = 0;
+                if (newIndex >= totalSlides) newIndex = totalSlides - 1;
+                currentIndex = newIndex;
+
+                track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+
+                slides.forEach((slide, idx) => {
+                    if (idx === currentIndex) {
+                        slide.classList.add('is-active');
+                        slide.removeAttribute('aria-hidden');
+                    } else {
+                        slide.classList.remove('is-active');
+                        slide.setAttribute('aria-hidden', 'true');
+                    }
+                });
+
+                if (counter) {
+                    counter.textContent = String(currentIndex + 1).padStart(2, '0') + ' / ' + String(totalSlides).padStart(2, '0');
+                }
+
+                if (prevBtn) {
+                    prevBtn.disabled = (currentIndex === 0);
+                    if (currentIndex === 0) prevBtn.classList.add('is-disabled');
+                    else prevBtn.classList.remove('is-disabled');
+                }
+                if (nextBtn) {
+                    nextBtn.disabled = (currentIndex === totalSlides - 1);
+                    if (currentIndex === totalSlides - 1) nextBtn.classList.add('is-disabled');
+                    else nextBtn.classList.remove('is-disabled');
+                }
+            }
+
+            updateSlide(0);
+
+            if (prevBtn) prevBtn.addEventListener('click', (e) => { e.preventDefault(); updateSlide(currentIndex - 1); });
+            if (nextBtn) nextBtn.addEventListener('click', (e) => { e.preventDefault(); updateSlide(currentIndex + 1); });
+
+            carousel.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    updateSlide(currentIndex - 1);
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    updateSlide(currentIndex + 1);
+                }
+            });
+
+            let startX = 0;
+            let startY = 0;
+            let isSwiping = false;
+
+            carousel.addEventListener('touchstart', (e) => {
+                if (e.touches.length === 1) {
+                    startX = e.touches[0].clientX;
+                    startY = e.touches[0].clientY;
+                    isSwiping = true;
+                }
+            }, { passive: true });
+
+            carousel.addEventListener('touchmove', (e) => {
+                if (!isSwiping || e.touches.length !== 1) return;
+                const diffX = e.touches[0].clientX - startX;
+                const diffY = e.touches[0].clientY - startY;
+                if (Math.abs(diffX) > Math.abs(diffY) && Math.abs(diffX) > 10) {
+                    if (e.cancelable) e.preventDefault();
+                }
+            }, { passive: false });
+
+            carousel.addEventListener('touchend', (e) => {
+                if (!isSwiping) return;
+                isSwiping = false;
+                const endX = e.changedTouches[0].clientX;
+                const endY = e.changedTouches[0].clientY;
+                const diffX = endX - startX;
+                const diffY = endY - startY;
+                if (Math.abs(diffX) > 35 && Math.abs(diffX) > Math.abs(diffY)) {
+                    if (diffX < 0) updateSlide(currentIndex + 1);
+                    else updateSlide(currentIndex - 1);
+                }
+            }, { passive: true });
+        })();
+    })();
+</script>
+<script src="../assets/js/global-audio.js"></script>
+    <script src="../assets/js/global-nav.js"></script>
+    <script src="../assets/js/footer-ascii.js"></script>
+  <script src="../../assets/js/lightbox.js"></script>
+</body>
+</html>

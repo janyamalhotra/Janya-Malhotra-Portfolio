@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>About Me — Janya Malhotra | Human-Centered Designer</title>
+  <meta name="description" content="About Janya Malhotra — Human-Centered Design student and practitioner based in Bangalore, working across interaction models, systems thinking, and speculative services.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32x32.png">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+
+  <!-- Google Fonts: Cormorant Garamond & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@1,400;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://api.fontshare.com/v2/css?f[]=erode@500&display=swap" rel="stylesheet">
+
+  <!-- Dedicated Stylesheet -->
+  <link rel="stylesheet" href="assets/css/about-me.css">
+  <link rel="stylesheet" href="assets/css/global-nav.css">
+  <link rel="stylesheet" href="assets/css/global-footer.css">
+  <link rel="stylesheet" href="assets/css/lightbox.css">
+</head>
+<body>
+
+  <!-- Top Sticky Navigation Bar -->
+  <nav class="about-nav-container" aria-label="Main Navigation">
+    <a href="index.html" class="about-nav-brand">Janya Malhotra</a>
+    <ul class="about-nav-links">
+      <li><a href="index.html#projects" class="about-nav-link">Projects</a></li>
+      <li><a href="about.html" class="about-nav-link is-active" aria-current="page">About Me</a></li>
+      <li><a href="#contact" class="about-nav-link">Contact</a></li>
+    </ul>
+  </nav>
+
+  <!-- Full-Bleed About Page Viewport Container -->
+  <div class="about-viewport-container">
+    <!-- Full-Bleed Decorative Background Patterns Layer -->
+    <div class="about-decorations-layer" aria-hidden="true">
+      <!-- 1. Blush Dotted Corner Ornament (Top-left, below navbar touching top & left edges) -->
+      <img src="assets/images/about_dotted_corner_ornament_blush.png" class="about-ornament-corner-blush about-ornament-blush-left" alt="" aria-hidden="true">
+      <!-- 2. Sage Floral Lattice Ornament (Extreme right edge beside Experience) -->
+      <img src="assets/images/about_symmetrical_floral_ornament_sage.png" class="about-ornament-lattice-sage" alt="" aria-hidden="true">
+      <!-- 3. Butter-Yellow Scattered Ornament (Extreme left edge, lower-left corner below Education) -->
+      <img src="assets/images/about_scattered_ornament_butter_yellow.png" class="about-ornament-scattered-yellow" alt="" aria-hidden="true">
+    </div>
+
+    <!-- Main Editorial Layout -->
+    <main class="about-page-wrapper">
+    <!-- Animated Dragonfly Component (Independent layered wings & continuous scroll-linked journey) -->
+    <div class="dragonfly-assembly is-perched" id="about-dragonfly" aria-label="Animated dragonfly perched on About Me heading">
+      <!-- Perched State: Horizontal sideways body, folded wings, legs gripping perch -->
+      <div class="dragonfly-perched-view">
+        <img src="assets/images/dragonfly/perched_abdomen.png" class="dragonfly-perched-art dragonfly-perched-abdomen" alt="" aria-hidden="true">
+        <img src="assets/images/dragonfly/perched_wings.png" class="dragonfly-perched-art dragonfly-perched-wings" alt="" aria-hidden="true">
+        <img src="assets/images/dragonfly/perched_head.png" class="dragonfly-perched-art dragonfly-perched-head" alt="" aria-hidden="true">
+      </div>
+      <!-- Flight State: Rapid independent 4-wing flutter & upright aerodynamic body -->
+      <div class="dragonfly-flight-view">
+        <img src="assets/images/dragonfly/wing_bl.png" class="dragonfly-wing dragonfly-wing-bl" alt="" aria-hidden="true">
+        <img src="assets/images/dragonfly/wing_br.png" class="dragonfly-wing dragonfly-wing-br" alt="" aria-hidden="true">
+        <img src="assets/images/dragonfly/wing_tl.png" class="dragonfly-wing dragonfly-wing-tl" alt="" aria-hidden="true">
+        <img src="assets/images/dragonfly/wing_tr.png" class="dragonfly-wing dragonfly-wing-tr" alt="" aria-hidden="true">
+        <img src="assets/images/dragonfly/body.png" class="dragonfly-body" alt="" aria-hidden="true">
+      </div>
+    </div>
+
+
+    <!-- =========================================================================
+         INITIAL VIEWPORT: INTRODUCTORY SECTION (FITS WITHIN 100VH)
+         ========================================================================= -->
+    <section class="about-hero-section" aria-label="About Janya Malhotra Introduction">
+      <div class="about-hero-grid">
+
+        <!-- Left Column: Heading, Photograph, and Corner Minimal Vinyl Player -->
+        <div class="about-left-col">
+          <header class="about-header-area">
+            <h1 class="about-hero-title">About <span id="about-heading-m">M</span>e</h1>
+          </header>
+
+          <!-- Main Photograph with partially overlapping minimal vinyl player on bottom-left -->
+          <div class="about-photo-wrapper">
+            <div class="about-photo-frame">
+              <img src="assets/images/about-me-portrait.jpg" alt="Janya Malhotra portrait photograph" class="about-photo" loading="eager" width="1024" height="768">
+            </div>
+
+            <!-- Minimal Vinyl Turntable: Small square backing plate with circular record & tonearm -->
+            <div class="minimal-vinyl-turntable" id="minimal-vinyl-turntable" role="region" aria-label="Interactive vinyl record music player">
+              <div class="vinyl-square-deck" id="turntable-deck" title="Click to play / pause · Hover for controls">
+                <!-- Circular Vinyl Record -->
+                <div class="vinyl-platter-well" id="vinyl-platter" role="button" tabindex="0" aria-label="Vinyl record. Click to play or pause. Hover for controls." title="Click to play / pause">
+                  <div class="vinyl-disc" id="vinyl-disc">
+                    <div class="vinyl-center-label">
+                      <img id="vinyl-label-art" src="assets/images/vinyl/radiohead-a-moon-shaped-pool.jpg" alt="Vinyl record center label" class="vinyl-label-art">
+                      <div class="vinyl-spindle-hole"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Mechanical Tonearm Assembly -->
+                <div class="tonearm-assembly" aria-hidden="true">
+                  <div class="tonearm-base"></div>
+                  <div class="tonearm-stem" id="tonearm-stem">
+                    <div class="tonearm-headshell">
+                      <div class="tonearm-stylus"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Minimal Hover Controls Bar -->
+                <div class="vinyl-hover-controls" id="vinyl-hover-controls" aria-label="Playback controls">
+                  <button type="button" class="vinyl-ctrl-btn" id="vinyl-btn-prev" aria-label="Previous track" title="Previous track">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 6h2v12H6zm3.5 6l8.5 6V6z"/></svg>
+                  </button>
+                  <button type="button" class="vinyl-ctrl-btn vinyl-ctrl-play" id="vinyl-btn-play" aria-label="Play or pause" title="Play / Pause">
+                    <svg class="play-icon" id="vinyl-play-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg>
+                    <svg class="pause-icon" id="vinyl-pause-icon" width="13" height="13" viewBox="0 0 24 24" fill="currentColor" style="display:none;"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"/></svg>
+                  </button>
+                  <button type="button" class="vinyl-ctrl-btn" id="vinyl-btn-next" aria-label="Next track" title="Next track">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M6 18l8.5-6L6 6v12zM16 6v12h2V6h-2z"/></svg>
+                  </button>
+                  <button type="button" class="vinyl-ctrl-btn vinyl-ctrl-menu" id="vinyl-menu-toggle-btn" aria-label="Browse tracks" title="Select track" aria-expanded="false">
+                    <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor"><path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"/></svg>
+                  </button>
+                </div>
+</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right Column: Introductory Prose & Side-by-Side Skills/Tools -->
+        <div class="about-right-col">
+          <!-- Both Introductory Paragraphs Sitting Together -->
+          <div class="about-intro-prose">
+            <p class="intro-paragraph">I'm someone who tends to notice things, how people navigate spaces, the small frictions in everyday routines, and the unspoken ways objects and systems shape our behavior. That natural curiosity is what drew me to design in the first place.</p>
+            
+            <p class="intro-paragraph">As a designer, I'm interested in the space between understanding a problem deeply and translating that understanding into tangible, thoughtful artifacts. Whether working on interaction models, physical-digital systems, or speculative services, I approach design with care for nuance, rhythm, and clarity.</p>
+
+            <div class="about-signature-wrapper">
+              <img src="assets/images/signature.png" alt="Janya Malhotra signature" class="about-signature" width="170" height="50">
+            </div>
+          </div>
+
+          <!-- Structured Two-Column Area: Areas of Practice (Left) & Tools & Software (Right) -->
+          <div class="about-toolkit-grid">
+            <!-- Areas of Practice (2-Column Grid: 4 items + 3 items) -->
+            <div class="toolkit-skills-col">
+              <span class="toolkit-column-title">Areas of Practice</span>
+              <div class="skills-two-column-grid">
+                <!-- Column 1 (4 items) -->
+                <ul class="skills-bullet-list">
+                  <li><span class="skill-bullet">✦</span> UI/UX Design</li>
+                  <li><span class="skill-bullet">✦</span> Systems Thinking</li>
+                  <li><span class="skill-bullet">✦</span> Design Research</li>
+                  <li><span class="skill-bullet">✦</span> Creative Strategy</li>
+                </ul>
+                <!-- Column 2 (3 items) -->
+                <ul class="skills-bullet-list">
+                  <li><span class="skill-bullet">✦</span> System Design</li>
+                  <li><span class="skill-bullet">✦</span> Service Design</li>
+                  <li><span class="skill-bullet">✦</span> Human-Centered Design</li>
+                </ul>
+              </div>
+            </div>
+
+            <!-- Tools & Software (7 Application Icons) -->
+            <div class="toolkit-apps-col">
+              <span class="toolkit-column-title">Tools &amp; Software</span>
+              <div class="app-icons-grid">
+                <div class="app-icon-item" title="Figma">
+                  <div class="app-icon-box"><svg viewBox="0 0 38 57" width="18" height="27" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19 28.5C19 23.2533 23.2533 19 28.5 19C33.7467 19 38 23.2533 38 28.5C38 33.7467 33.7467 38 28.5 38C23.2533 38 19 33.7467 19 28.5Z" fill="#1ABCFE"/>
+    <path d="M0 47.5C0 42.2533 4.25329 38 9.5 38H19V47.5C19 52.7467 14.7467 57 9.5 57C4.25329 57 0 52.7467 0 47.5Z" fill="#0ACF83"/>
+    <path d="M19 0V19H28.5C33.7467 19 38 14.7467 38 9.5C38 4.25329 33.7467 0 28.5 0H19Z" fill="#FF7262"/>
+    <path d="M0 9.5C0 14.7467 4.25329 19 9.5 19H19V0H9.5C4.25329 0 0 4.25329 0 9.5Z" fill="#F24E1E"/>
+    <path d="M0 28.5C0 33.7467 4.25329 38 9.5 38H19V19H9.5C4.25329 19 0 23.2533 0 28.5Z" fill="#A259FF"/>
+  </svg></div>
+                  <span class="app-icon-label">Figma</span>
+                </div>
+                <div class="app-icon-item" title="Framer">
+                  <div class="app-icon-box"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M4 0h16v8h-8zM4 8h8l8 8H4zM4 16h8v8z" fill="#0055FF"/>
+  </svg></div>
+                  <span class="app-icon-label">Framer</span>
+                </div>
+                <div class="app-icon-item" title="Claude">
+                  <div class="app-icon-box"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <path d="M12 2l1.6 6.3 6.4-1.9-3.8 5.3 5.8 2.3-6.1 2.2 3.6 5.4-6.3-2-1.2 6.4-1.6-6.3-6.4 1.9 3.8-5.3-5.8-2.3 6.1-2.2-3.6-5.4 6.3 2L12 2z" fill="#D97757"/>
+  </svg></div>
+                  <span class="app-icon-label">Claude</span>
+                </div>
+                <div class="app-icon-item" title="ChatGPT">
+                  <div class="app-icon-box"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="#10A37F" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg">
+    <path d="M19.16 7.8A5 5 0 0 0 15 3.32a5.03 5.03 0 0 0-5.83 1.83A5 5 0 0 0 4.8 7.8a5 5 0 0 0 .54 6.06A5 5 0 0 0 4.84 16a5 5 0 0 0 4.33 4.68 5 5 0 0 0 5.83-1.83 5 5 0 0 0 4.37-2.65 5 5 0 0 0-.21-6.1z"/>
+    <circle cx="12" cy="12" r="2.2" fill="#10A37F"/>
+  </svg></div>
+                  <span class="app-icon-label">ChatGPT</span>
+                </div>
+                <div class="app-icon-item" title="Adobe Photoshop">
+                  <div class="app-icon-box"><svg viewBox="0 0 32 32" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+    <rect width="32" height="32" rx="6" fill="#001E36"/>
+    <text x="6" y="21.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#31A8FF" letter-spacing="-0.5px">Ps</text>
+  </svg></div>
+                  <span class="app-icon-label">Photoshop</span>
+                </div>
+                <div class="app-icon-item" title="Adobe Film app (Premiere Pro)">
+                  <div class="app-icon-box"><svg viewBox="0 0 32 32" width="24" height="24" xmlns="http://www.w3.org/2000/svg">
+    <rect width="32" height="32" rx="6" fill="#00005B"/>
+    <text x="7" y="21.5" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#9999FF" letter-spacing="-0.5px">Pr</text>
+  </svg></div>
+                  <span class="app-icon-label">Adobe Film</span>
+                </div>
+                <div class="app-icon-item" title="Blender">
+                  <div class="app-icon-box"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" xmlns="http://www.w3.org/2000/svg">
+    <circle cx="12" cy="14" r="4.5" stroke="#E87D0D" stroke-width="1.8" fill="#265787"/>
+    <circle cx="12" cy="14" r="2.2" fill="#FFFFFF"/>
+    <path d="M12 4.5v5M6.5 7.5L10 11M17.5 7.5L14 11" stroke="#E87D0D" stroke-width="1.8" stroke-linecap="round"/>
+    <circle cx="12" cy="3.5" r="1.5" fill="#E87D0D"/>
+  </svg></div>
+                  <span class="app-icon-label">Blender</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =========================================================================
+         BELOW THE FOLD: EDUCATION & EXPERIENCE SECTION (REACHED AFTER SCROLLING)
+         ========================================================================= -->
+    <section class="about-credentials-section" id="education-experience" aria-label="Education and Experience">
+
+      <div class="credentials-two-col-grid">
+        <!-- Column 1: Education -->
+        <div class="credential-column">
+          <span class="section-tag" id="tag-education">EDUCATION</span>
+          <article class="credential-card">
+            <h3 class="credential-org">Srishti Manipal Institute of Art, Design and Technology</h3>
+            <div class="credential-role-row">
+              <span class="credential-role">Bachelor of Design (B.Des) in Human-Centered Design</span>
+              <span class="credential-date">2024 – 2028 (Third Year)</span>
+            </div>
+            <span class="credential-meta-badge">Minor: Business Service &amp; System Design</span>
+          </article>
+        </div>
+
+        <!-- Column 2: Experience -->
+        <div class="credential-column">
+          <span class="section-tag" id="tag-experience">EXPERIENCE</span>
+          <!-- DS+A -->
+          <article class="credential-card">
+            <h3 class="credential-org">DS+A</h3>
+            <div class="credential-role-row">
+              <span class="credential-role">Spatial &amp; Architectural Design Studio · Digital Design</span>
+              <span class="credential-date">June 2025 – July 2025</span>
+            </div>
+            <p class="credential-desc">Bangalore, India · Led the comprehensive redesign of the firm's digital portfolio and public-facing web presence.</p>
+          </article>
+
+          <!-- Designare & Buzzinga -->
+          <article class="credential-card">
+            <h3 class="credential-org">Designare &amp; Buzzinga</h3>
+            <div class="credential-role-row">
+              <span class="credential-role">Creative Strategy &amp; Content Strategy</span>
+              <span class="credential-date">August 2026</span>
+            </div>
+            <p class="credential-desc">Developed content strategy and content ideas for Designare's social media page, and developed creative and content strategies, content scripts, and pitch decks for Buzzinga's clients.</p>
+          </article>
+        </div>
+      
+      <!-- Grass Cluster with Flower & Landing Dragonfly (Bottom-right of Screen 2) -->
+      
+      <!-- Bottom-Left Hero Grass Component (Canvas 2D dynamic swaying grass, identical to homepage hero) -->
+      <!-- Animated Dragonfly Component (Independent layered wings & continuous scroll-linked journey) -->
+      </div>
+    
+    </section>
+  </main>
+
+  </div>
+
+  <!-- Editorial Global Footer -->
+  <footer id="contact" class="portfolio-gradient-footer" role="contentinfo" aria-label="Website footer and contact">
+    <div class="footer-gradient-backdrop" aria-hidden="true">
+      <div class="footer-gradient-layer"></div>
+      <div class="footer-gradient-noise"></div>
+      <canvas id="footer-ascii-canvas" class="footer-ascii-canvas"></canvas>
+    </div>
+
+    <div class="footer-shell">
+      <div class="footer-top-grid">
+        <!-- Left Column: Short Closing Statement & Contact Note -->
+        <div class="footer-brand-col">
+          <h2 class="footer-closing-statement"><span id="footer-statement-l" class="footer-statement-l">L</span>et's bring ideas to life.</h2>
+          <p class="footer-contact-note">Have an idea in mind? I'd love to hear about it. Reach out through email. I'm also open to freelance projects and creative collaborations.</p>
+        </div>
+
+        <!-- Right Column: Navigation & Connect -->
+        <div class="footer-nav-col footer-connect-col">
+          <div class="footer-links-group">
+            <span class="footer-group-heading">CONNECT</span>
+            <ul class="footer-nav-list">
+              <li>
+                <a href="mailto:janya.malhotra2@gmail.com" class="footer-link">
+                  <span class="footer-link-icon">✉</span>
+                  <span>janya.malhotra2@gmail.com</span>
+                </a>
+              </li>
+              <li>
+                <a href="https://www.linkedin.com/in/janya-malhotra-2a85aa438" target="_blank" rel="noopener noreferrer" class="footer-link">
+                  <span class="footer-link-icon">↗</span>
+                  <span>LinkedIn</span>
+                </a>
+              </li>
+              <li>
+                <a href="assets/Janya-Malhotra-Resume.pdf" target="_blank" rel="noopener noreferrer" download="Janya-Malhotra-Resume.pdf" class="footer-link footer-resume-link">
+                  <span class="footer-link-icon">↓</span>
+                  <span>Download Resume (PDF)</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <!-- Bottom Row: Copyright -->
+      <div class="footer-bottom-row">
+        <div class="footer-copyright">
+          © <span id="footer-dynamic-year">2026</span> Janya Malhotra. All rights reserved.
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  
+  <!-- Radial / Modal Track Selection Overlay (Mounted to body for viewport-fixed stability) -->
+  <div class="radial-menu-overlay" id="radial-menu-overlay" role="dialog" aria-modal="true" aria-label="Track Selection Menu">
+    <div class="radial-menu-track-list">
+      <div class="radial-menu-header" style="display:flex; justify-content:space-between; align-items:center; margin-bottom:6px;">
+        <span style="font-size:10px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase; color:#FAF7EE;">SELECT TRACK</span>
+        <button type="button" id="radial-menu-close-btn" style="background:none; border:none; color:#FAF7EE; font-size:16px; cursor:pointer; padding:2px 6px;" aria-label="Close track menu">✕</button>
+      </div>
+
+      <!-- Track 0 -->
+      <button type="button" class="radial-menu-item is-selected" data-track-index="0">
+        <img src="assets/images/vinyl/radiohead-a-moon-shaped-pool.jpg" alt="A Moon Shaped Pool album cover" class="radial-item-thumb">
+        <div class="radial-item-info">
+          <span class="radial-item-title">Present Tense</span>
+          <span class="radial-item-artist">Radiohead · A Moon Shaped Pool</span>
+        </div>
+      </button>
+
+      <!-- Track 1 -->
+      <button type="button" class="radial-menu-item" data-track-index="1">
+        <img src="assets/images/vinyl/alvvays-antisocialites.png" alt="Antisocialites album cover" class="radial-item-thumb">
+        <div class="radial-item-info">
+          <span class="radial-item-title">Dreams Tonite</span>
+          <span class="radial-item-artist">Alvvays · Antisocialites</span>
+        </div>
+      </button>
+
+      <!-- Track 2 -->
+      <button type="button" class="radial-menu-item" data-track-index="2">
+        <img src="assets/images/vinyl/gorillaz-humanz.png" alt="Humanz album cover" class="radial-item-thumb">
+        <div class="radial-item-info">
+          <span class="radial-item-title">Busted &amp; Blue</span>
+          <span class="radial-item-artist">Gorillaz · Humanz</span>
+        </div>
+      </button>
+
+      <p class="radial-menu-hint">Click record to play/pause · Choose song to play</p>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="assets/js/global-audio.js"></script>
+  <script>
+  (function() {
+    'use strict';
+
+    var platter = document.getElementById('vinyl-platter');
+    var disc = document.getElementById('vinyl-disc');
+    var tonearm = document.getElementById('tonearm-stem');
+    var labelArt = document.getElementById('vinyl-label-art');
+    var playBtn = document.getElementById('vinyl-btn-play');
+    var playIcon = document.getElementById('vinyl-play-icon');
+    var pauseIcon = document.getElementById('vinyl-pause-icon');
+    var prevBtn = document.getElementById('vinyl-btn-prev');
+    var nextBtn = document.getElementById('vinyl-btn-next');
+    var radialOverlay = document.getElementById('radial-menu-overlay');
+    var menuToggleBtn = document.getElementById('vinyl-menu-toggle-btn');
+    var menuCloseBtn = document.getElementById('radial-menu-close-btn');
+    var trackButtons = document.querySelectorAll('.radial-menu-item');
+
+    // Subscribe to PortfolioAudio state
+    if (window.PortfolioAudio) {
+      window.PortfolioAudio.subscribe(function(state) {
+        if (!state || !state.track) return;
+
+        // Tonearm & disc spinning
+        if (state.isPlaying) {
+          if (tonearm) tonearm.classList.add('is-playing');
+          if (disc) disc.classList.add('is-spinning');
+          if (playIcon) playIcon.style.display = 'none';
+          if (pauseIcon) pauseIcon.style.display = 'block';
+        } else {
+          if (tonearm) tonearm.classList.remove('is-playing');
+          if (disc) disc.classList.remove('is-spinning');
+          if (playIcon) playIcon.style.display = 'block';
+          if (pauseIcon) pauseIcon.style.display = 'none';
+        }
+
+        // Track metadata & artwork
+        if (labelArt) labelArt.src = state.track.cover;
+        if (platter) platter.title = (state.isPlaying ? 'Playing: ' : 'Paused: ') + state.track.title + ' · ' + state.track.artist + ' (Click to toggle)';
+
+        // Radial menu selection highlight
+        trackButtons.forEach(function(btn, idx) {
+          if (idx === state.trackIndex) {
+            btn.classList.add('is-selected');
+          } else {
+            btn.classList.remove('is-selected');
+          }
+        });
+      });
+    }
+
+    // Click on platter or disc toggles playback
+    function toggleAudio(e) {
+      if (radialOverlay && radialOverlay.classList.contains('is-open')) return;
+      if (window.PortfolioAudio) {
+        window.PortfolioAudio.toggle();
+      }
+    }
+
+    if (platter) {
+      platter.addEventListener('click', toggleAudio);
+      platter.addEventListener('keydown', function(e) {
+        if (e.key === ' ' || e.key === 'Enter') {
+          e.preventDefault();
+          toggleAudio(e);
+        }
+      });
+      // Right click opens track menu
+      platter.addEventListener('contextmenu', function(e) {
+        e.preventDefault();
+        openRadialMenu();
+      });
+    }
+
+    if (playBtn) {
+      playBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        toggleAudio(e);
+      });
+    }
+
+    if (prevBtn) {
+      prevBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (window.PortfolioAudio) {
+          window.PortfolioAudio.playPrev();
+        }
+      });
+    }
+
+    if (nextBtn) {
+      nextBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (window.PortfolioAudio) {
+          window.PortfolioAudio.playNext();
+        }
+      });
+    }
+
+    function openRadialMenu() {
+      if (!radialOverlay) return;
+      radialOverlay.classList.add('is-open');
+      if (menuToggleBtn) menuToggleBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeRadialMenu() {
+      if (!radialOverlay) return;
+      radialOverlay.classList.remove('is-open');
+      if (menuToggleBtn) menuToggleBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    if (menuToggleBtn) {
+      menuToggleBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        if (radialOverlay && radialOverlay.classList.contains('is-open')) {
+          closeRadialMenu();
+        } else {
+          openRadialMenu();
+        }
+      });
+    }
+
+    if (menuCloseBtn) {
+      menuCloseBtn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        closeRadialMenu();
+      });
+    }
+
+    // Selecting a track from the radial menu
+    trackButtons.forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.stopPropagation();
+        var trackIdx = parseInt(btn.getAttribute('data-track-index'), 10);
+        if (window.PortfolioAudio && !isNaN(trackIdx)) {
+          window.PortfolioAudio.selectTrack(trackIdx);
+        }
+        closeRadialMenu();
+      });
+    });
+
+    // Close radial menu when clicking outside the track list (on the backdrop overlay)
+    if (radialOverlay) {
+      radialOverlay.addEventListener('click', function(e) {
+        if (!e.target.closest('.radial-menu-track-list')) {
+          closeRadialMenu();
+        }
+      });
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && radialOverlay && radialOverlay.classList.contains('is-open')) {
+        closeRadialMenu();
+      }
+    });
+
+    
+
+        // --- Dragonfly Continuous Scroll-Linked Journey Controller (Continuous Motion & Capital M/L Perching) ---
+    (function() {
+      var dragonfly = document.getElementById('about-dragonfly');
+      if (!dragonfly) return;
+
+      // Ensure dragonfly is attached directly to document.body so it can smoothly traverse the entire page,
+      // including across the hero, credentials, and directly onto the footer's capital L
+      if (dragonfly.parentElement !== document.body) {
+        document.body.appendChild(dragonfly);
+      }
+      dragonfly.style.position = 'absolute';
+      dragonfly.style.zIndex = '999';
+
+      function getCoord(el, rx, ry) {
+        if (!el) return { x: 0, y: 0 };
+        var r = el.getBoundingClientRect();
+        return {
+          x: r.left + window.scrollX + r.width * rx,
+          y: r.top + window.scrollY + r.height * ry
+        };
+      }
+
+      // Catmull-Rom Spline Evaluation (C1 Continuous Multi-Waypoint Curve)
+      function catmullRom(p0, p1, p2, p3, t) {
+        var t2 = t * t;
+        var t3 = t2 * t;
+
+        var f1 = -0.5 * t3 + t2 - 0.5 * t;
+        var f2 = 1.5 * t3 - 2.5 * t2 + 1.0;
+        var f3 = -1.5 * t3 + 2.0 * t2 + 0.5 * t;
+        var f4 = 0.5 * t3 - 0.5 * t2;
+
+        var x = p0.x * f1 + p1.x * f2 + p2.x * f3 + p3.x * f4;
+        var y = p0.y * f1 + p1.y * f2 + p2.y * f3 + p3.y * f4;
+
+        var df1 = -1.5 * t2 + 2.0 * t - 0.5;
+        var df2 = 4.5 * t2 - 5.0 * t;
+        var df3 = -4.5 * t2 + 4.0 * t + 0.5;
+        var df4 = 1.5 * t2 - t;
+
+        var dx = p0.x * df1 + p1.x * df2 + p2.x * df3 + p3.x * df4;
+        var dy = p0.y * df1 + p1.y * df2 + p2.y * df3 + p3.y * df4;
+
+        return { x: x, y: y, dx: dx, dy: dy };
+      }
+
+      function evalSpline(points, u) {
+        var n = points.length - 1;
+        var scaledU = Math.max(0, Math.min(1, u)) * n;
+        var i = Math.min(Math.floor(scaledU), n - 1);
+        var t = scaledU - i;
+
+        var p0 = i > 0 ? points[i - 1] : { x: 2 * points[0].x - points[1].x, y: 2 * points[0].y - points[1].y };
+        var p1 = points[i];
+        var p2 = points[i + 1];
+        var p3 = i < n - 1 ? points[i + 2] : { x: 2 * points[n].x - points[n - 1].x, y: 2 * points[n].y - points[n - 1].y };
+
+        return catmullRom(p0, p1, p2, p3, t);
+      }
+
+      // Smooth Flight Easing with Prolonged Landing Deceleration
+      function getFlightU(p) {
+        p = Math.max(0, Math.min(1, p));
+        // Smooth takeoff acceleration in first 6%
+        if (p < 0.06) {
+          var t0 = p / 0.06;
+          return 0.06 * (t0 * t0 * (3 - 2 * t0));
+        }
+        // Active linear flight through Vinyl, Education, Experience, and into right arc
+        if (p <= 0.72) {
+          return p;
+        }
+        // Graceful, slower deceleration over final 28% of scroll approach into Capital L
+        var t = (p - 0.72) / 0.28;
+        var ease = t * (2 - t);
+        return 0.72 + ease * 0.28;
+      }
+
+      function getDestinations() {
+        var headingM = document.getElementById('about-heading-m');
+        var turntable = document.getElementById('turntable-deck') || document.getElementById('minimal-vinyl-turntable');
+        var edu = document.getElementById('tag-education');
+        var exp = document.getElementById('tag-experience');
+        var footerL = document.getElementById('footer-statement-l');
+
+        var docWidth = document.documentElement.clientWidth || window.innerWidth || 1400;
+
+        // 1. Starting Point: Perched on first upper point of Capital M
+        var pM = headingM ? getCoord(headingM, 0.40, 0.20) : { x: 246, y: 201 };
+
+        // 2. Vinyl Component: Smooth curved flight past the record without stopping
+        var pVinyl = turntable ? getCoord(turntable, 0.50, 0.26) : { x: 163, y: 423 };
+
+        // 3. Education Heading: Glides past without landing or pausing
+        var eduRect = edu ? edu.getBoundingClientRect() : null;
+        var pEdu = eduRect ? { x: eduRect.left + window.scrollX + 50, y: eduRect.top + window.scrollY - 10 } : { x: 172, y: 839 };
+
+        // 4. Experience Heading: Glides past without landing or pausing
+        var expRect = exp ? exp.getBoundingClientRect() : null;
+        var pExp = expRect ? { x: expRect.left + window.scrollX + 60, y: expRect.top + window.scrollY - 10 } : { x: 798, y: 839 };
+
+        // 7. Final Destination: Footer Capital L
+        var pFooterL = footerL ? getCoord(footerL, 0.38, 0.18) : { x: 160, y: 1439 };
+
+        // 5 & 6. Post-Experience Expressive Flight Curves:
+        // First, broad arc towards the right margin below Experience
+        var spanY = pFooterL.y - pExp.y;
+        var rightX = docWidth > 860 ? Math.min(docWidth - 140, pExp.x + 280) : Math.min(docWidth - 50, pExp.x + 80);
+        var pRightArc = { x: rightX, y: pExp.y + spanY * 0.38 };
+
+        // Then curve back towards the left, gradually descending towards footer text
+        var leftX = docWidth > 860 ? Math.max(140, pFooterL.x + 240) : Math.max(60, pFooterL.x + 70);
+        var pLeftCurve = { x: leftX, y: pExp.y + spanY * 0.72 };
+
+        return [pM, pVinyl, pEdu, pExp, pRightArc, pLeftCurve, pFooterL];
+      }
+
+      var destinations = getDestinations();
+
+      window.addEventListener('resize', function() {
+        destinations = getDestinations();
+      }, { passive: true });
+
+      var currentT = 0;
+      var targetT = 0;
+      var currentAngle = -4;
+      var isFlying = false;
+      var currentPerch = 'M'; // 'M' or 'L' or null
+
+      // Idle wing-fluttering animation: triggered approximately every 4 to 5 seconds while perched
+      var flutterTimer = null;
+      var flutterAnimTimeout = null;
+
+      function stopFlutter() {
+        if (flutterTimer) {
+          clearTimeout(flutterTimer);
+          flutterTimer = null;
+        }
+        if (flutterAnimTimeout) {
+          clearTimeout(flutterAnimTimeout);
+          flutterAnimTimeout = null;
+        }
+        if (dragonfly) {
+          dragonfly.classList.remove('is-fluttering');
+        }
+      }
+
+      function triggerFlutter() {
+        if (!dragonfly || isFlying) {
+          stopFlutter();
+          return;
+        }
+        dragonfly.classList.add('is-fluttering');
+        flutterAnimTimeout = setTimeout(function() {
+          if (dragonfly) {
+            dragonfly.classList.remove('is-fluttering');
+          }
+          flutterAnimTimeout = null;
+          // Trigger the wing flutter approximately every 4 to 5 seconds while perched
+          var interval = 4000 + Math.random() * 1000;
+          flutterTimer = setTimeout(triggerFlutter, interval);
+        }, 1000);
+      }
+
+      function startFlutterSequence(delayMs) {
+        stopFlutter();
+        flutterTimer = setTimeout(triggerFlutter, delayMs || 2500);
+      }
+
+      function updateDragonfly() {
+        var maxScroll = Math.max(1, document.documentElement.scrollHeight - window.innerHeight);
+        targetT = Math.max(0, Math.min(1, window.scrollY / maxScroll));
+
+        // Smooth damping on scroll progression for natural continuous motion
+        currentT += (targetT - currentT) * 0.18;
+        if (Math.abs(targetT - currentT) < 0.0003) {
+          currentT = targetT;
+        }
+
+        var posX, posY, targetAngle, anchorX, anchorY;
+        var S_TAKEOFF = 0.035;
+        var S_LAND = 0.950;
+
+        if (currentT <= S_TAKEOFF) {
+          // 1. Starting Point: Perched on Capital M
+          var p0 = destinations[0];
+          posX = p0.x;
+          posY = p0.y;
+          targetAngle = -4;
+          anchorX = 22.6;
+          anchorY = 37.8;
+
+          if (isFlying || !dragonfly.classList.contains('is-perched')) {
+            dragonfly.classList.remove('is-flying');
+            dragonfly.classList.add('is-perched');
+            isFlying = false;
+          }
+
+          if (currentPerch !== 'M') {
+            currentPerch = 'M';
+            startFlutterSequence(2500);
+          } else if (!flutterTimer && !dragonfly.classList.contains('is-fluttering')) {
+            startFlutterSequence(4000 + Math.random() * 1000);
+          }
+        } else if (currentT >= S_LAND) {
+          // 5. Final Destination: Perched directly on Capital L
+          var pL = destinations[destinations.length - 1];
+          posX = pL.x;
+          posY = pL.y;
+          targetAngle = -3;
+          anchorX = 22.6;
+          anchorY = 37.8;
+
+          if (isFlying || !dragonfly.classList.contains('is-perched')) {
+            dragonfly.classList.remove('is-flying');
+            dragonfly.classList.add('is-perched');
+            isFlying = false;
+          }
+
+          if (currentPerch !== 'L') {
+            currentPerch = 'L';
+            startFlutterSequence(2500);
+          } else if (!flutterTimer && !dragonfly.classList.contains('is-fluttering')) {
+            startFlutterSequence(4000 + Math.random() * 1000);
+          }
+        } else {
+          // Continuous active flight between Capital M and Capital L (NO intermediate perching)
+          currentPerch = null;
+          stopFlutter();
+
+          if (!isFlying) {
+            dragonfly.classList.remove('is-perched');
+            dragonfly.classList.add('is-flying');
+            isFlying = true;
+          }
+
+          // Normalized flight input along flight interval
+          var p = (currentT - S_TAKEOFF) / (S_LAND - S_TAKEOFF);
+          p = Math.max(0, Math.min(1, p));
+
+          // Easing with slower, graceful landing deceleration
+          var u = getFlightU(p);
+
+          var pt = evalSpline(destinations, u);
+          posX = pt.x;
+          posY = pt.y;
+
+          // Natural banking along continuous travel trajectory
+          var rawBank = Math.atan2(pt.dx, Math.max(70, pt.dy * 0.75)) * (180 / Math.PI);
+          var bankAngle = Math.max(-26, Math.min(26, rawBank));
+
+          // Smooth blending into resting angles near Capital M and Capital L
+          if (u < 0.10) {
+            var blendStart = u / 0.10;
+            targetAngle = -4 * (1 - blendStart) + bankAngle * blendStart;
+          } else if (u > 0.85) {
+            var blendEnd = (1 - u) / 0.15;
+            targetAngle = -3 * (1 - blendEnd) + bankAngle * blendEnd;
+          } else {
+            targetAngle = bankAngle;
+          }
+
+          // Anchor blends smoothly between perched feet (22.6, 37.8) and flight center of mass (36, 30)
+          var flightBlend = Math.sin(u * Math.PI);
+          anchorX = 22.6 + (36.0 - 22.6) * flightBlend;
+          anchorY = 37.8 + (30.0 - 37.8) * flightBlend;
+        }
+
+        var diff = (targetAngle - currentAngle + 180) % 360 - 180;
+        currentAngle += diff * 0.18;
+
+        dragonfly.style.left = posX.toFixed(1) + 'px';
+        dragonfly.style.top = posY.toFixed(1) + 'px';
+        dragonfly.style.transform = 'translate(-' + anchorX.toFixed(1) + 'px, -' + anchorY.toFixed(1) + 'px) rotate(' + currentAngle.toFixed(1) + 'deg)';
+
+        requestAnimationFrame(updateDragonfly);
+      }
+
+      // Initial placement on capital M
+      var dInit = getDestinations();
+      var p0 = dInit[0];
+      dragonfly.style.left = p0.x.toFixed(1) + 'px';
+      dragonfly.style.top = p0.y.toFixed(1) + 'px';
+      dragonfly.style.transform = 'translate(-22.6px, -37.8px) rotate(-4deg)';
+      dragonfly.classList.add('is-perched');
+      dragonfly.classList.remove('is-flying');
+      currentPerch = 'M';
+      startFlutterSequence(3000);
+
+      requestAnimationFrame(updateDragonfly);
+    })();
+
+    })();
+  </script>
+  <script src="assets/js/footer-ascii.js"></script>
+  <script src="assets/js/global-nav.js"></script>
+  <script src="assets/js/lightbox.js"></script>
+</body>
+</html>

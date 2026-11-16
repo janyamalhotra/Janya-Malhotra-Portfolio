@@ -1,0 +1,344 @@
+/* Custom Global Text Selection (Butter Yellow) */
+::selection {
+  background-color: #FFEDA8 !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+::-moz-selection {
+  background-color: #FFEDA8 !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+*::selection {
+  background-color: #FFEDA8 !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+*::-moz-selection {
+  background-color: #FFEDA8 !important;
+  color: #000000 !important;
+  text-shadow: none !important;
+}
+
+
+/* ==========================================================================
+   Universal Portfolio Image Lightbox System
+   Clean, accessible, responsive full-screen lightbox with carousel syncing
+   ========================================================================== */
+
+/* Expandable Image Cursors & Visual Affordance */
+img.portfolio-expandable,
+.portfolio-expandable img,
+.carousel-slide-image-wrap img,
+.carousel-slide-image,
+.rulebook-slide img,
+.bts-slide img,
+.hero-media,
+.hero-media-wrapper img,
+.persona-card img,
+.design-collage-img,
+.showcase-grid img,
+.grid-2-col img,
+.process-step-img,
+.about-photo-frame img,
+[data-expandable="true"] {
+  cursor: zoom-in;
+  transition: transform 0.22s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.22s ease;
+}
+
+/* Lightbox Modal Shell */
+.portfolio-lightbox {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(14, 18, 14, 0.92);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+  transition: opacity 0.24s cubic-bezier(0.16, 1, 0.3, 1), visibility 0.24s;
+  padding: 24px;
+  box-sizing: border-box;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+.portfolio-lightbox.is-open {
+  opacity: 1;
+  visibility: visible;
+  pointer-events: auto;
+}
+
+/* Modal Inner Container */
+.portfolio-lightbox-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: 95vw;
+  max-height: 94vh;
+  outline: none;
+  box-sizing: border-box;
+}
+
+/* Image Presentation Frame */
+.portfolio-lightbox-frame {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  max-width: 92vw;
+  max-height: 78vh;
+  box-sizing: border-box;
+}
+
+.portfolio-lightbox-img {
+  max-width: 92vw;
+  max-height: 78vh;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  display: block;
+  border-radius: 8px;
+  background: #ffffff;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.55), 0 4px 16px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.18s ease;
+  will-change: transform, opacity;
+  cursor: default;
+}
+
+/* Subtle image change fade effect */
+.portfolio-lightbox-img.is-switching {
+  opacity: 0.4;
+  transform: scale(0.985);
+}
+
+/* Caption, Subtitle & Counter Bar */
+.portfolio-lightbox-caption {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  max-width: 840px;
+  padding: 0 16px;
+  color: #FAF8F5;
+  box-sizing: border-box;
+}
+
+.portfolio-lightbox-title {
+  font-family: 'Cormorant Garamond', Garamond, Georgia, serif;
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.25;
+  color: #FAF8F5;
+  margin: 0 0 4px 0;
+  letter-spacing: -0.01em;
+}
+
+.portfolio-lightbox-subtitle {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 13.5px;
+  line-height: 1.55;
+  color: rgba(250, 248, 245, 0.82);
+  margin: 0 0 6px 0;
+  max-width: 720px;
+}
+
+.portfolio-lightbox-counter {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  font-size: 11.5px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  color: rgba(255, 255, 255, 0.6);
+  text-transform: uppercase;
+  margin-top: 2px;
+}
+
+/* Top Right Close Button */
+.portfolio-lightbox-close {
+  position: fixed;
+  top: 20px;
+  right: 24px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 100002;
+  padding: 0;
+  outline: none;
+}
+
+.portfolio-lightbox-close svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+}
+
+.portfolio-lightbox-close:hover {
+  background: rgba(255, 255, 255, 0.32);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.08);
+}
+
+.portfolio-lightbox-close:active {
+  transform: scale(0.96);
+}
+
+.portfolio-lightbox-close:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+/* Left & Right Carousel Navigation Arrows */
+.portfolio-lightbox-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #ffffff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  z-index: 100002;
+  padding: 0;
+  outline: none;
+}
+
+.portfolio-lightbox-prev {
+  left: 24px;
+}
+
+.portfolio-lightbox-next {
+  right: 24px;
+}
+
+.portfolio-lightbox-nav svg {
+  width: 20px;
+  height: 20px;
+  stroke: currentColor;
+  stroke-width: 2.2;
+}
+
+.portfolio-lightbox-nav:hover {
+  background: rgba(255, 255, 255, 0.32);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.08);
+}
+
+.portfolio-lightbox-nav:active {
+  transform: translateY(-50%) scale(0.96);
+}
+
+.portfolio-lightbox-nav:focus-visible {
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.6);
+}
+
+.portfolio-lightbox-nav.is-hidden {
+  display: none;
+}
+
+/* Subtle Hover Zoom Hint on Carousel Slides */
+.carousel-slide-image-wrap {
+  position: relative;
+}
+
+.carousel-slide-zoom-hint,
+.portfolio-slide-zoom-badge {
+  position: absolute;
+  bottom: 12px;
+  right: 12px;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 12px;
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  color: #1a221a;
+  font-family: 'Inter', -apple-system, sans-serif;
+  font-size: 11.5px;
+  font-weight: 550;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  opacity: 0.85;
+  transition: all 0.2s ease;
+  z-index: 2;
+}
+
+.carousel-slide-image-wrap:hover .carousel-slide-zoom-hint,
+.carousel-slide-image-wrap:hover .portfolio-slide-zoom-badge {
+  opacity: 1;
+  background: #ffffff;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .portfolio-lightbox {
+    padding: 16px;
+  }
+
+  .portfolio-lightbox-frame {
+    max-width: 96vw;
+    max-height: 70vh;
+  }
+
+  .portfolio-lightbox-img {
+    max-width: 96vw;
+    max-height: 70vh;
+  }
+
+  .portfolio-lightbox-title {
+    font-size: 18px;
+  }
+
+  .portfolio-lightbox-subtitle {
+    font-size: 12.5px;
+    line-height: 1.45;
+  }
+
+  .portfolio-lightbox-close {
+    top: 14px;
+    right: 14px;
+    width: 38px;
+    height: 38px;
+  }
+
+  .portfolio-lightbox-nav {
+    width: 40px;
+    height: 40px;
+  }
+
+  .portfolio-lightbox-prev {
+    left: 10px;
+  }
+
+  .portfolio-lightbox-next {
+    right: 10px;
+  }
+}

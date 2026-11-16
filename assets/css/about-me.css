@@ -1054,32 +1054,15 @@ body {
   display: none !important;
 }
 
-/* 2. Sage Floral Lattice (Extreme Right Edge, beside Education & Experience in right margin) */
+/* 2. Sage Floral Lattice - Removed */
 .about-ornament-lattice-sage {
-  position: absolute;
-  right: clamp(16px, 2vw, 36px);
-  top: clamp(840px, 86vh, 880px);
-  transform: translateY(-50%);
-  width: clamp(190px, 15vw, 240px);
-  height: auto;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.85;
-  user-select: none;
-}
+    display: none !important;
+  }
 
-/* 3. Butter-Yellow Scattered Ornament (Extreme Left Edge, bottom-left below Education above footer) */
+/* 3. Butter-Yellow Scattered Ornament - Removed */
 .about-ornament-scattered-yellow {
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  width: clamp(200px, 16vw, 260px);
-  height: auto;
-  pointer-events: none;
-  z-index: 0;
-  opacity: 0.90;
-  user-select: none;
-}
+    display: none !important;
+  }
 
 
 /* Dragonfly Assembly */
@@ -1253,13 +1236,10 @@ body {
     width: clamp(200px, 30vw, 300px);
   }
   .about-ornament-lattice-sage {
-    width: clamp(140px, 18vw, 190px);
-    right: 12px;
-    top: clamp(830px, 86vh, 880px);
-    opacity: 0.75;
+    display: none !important;
   }
   .about-ornament-scattered-yellow {
-    width: clamp(160px, 22vw, 220px);
+    display: none !important;
   }
   .about-hero-grass-container {
     right: 24px;

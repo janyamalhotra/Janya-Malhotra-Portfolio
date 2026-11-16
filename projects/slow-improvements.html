@@ -1,0 +1,2570 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Slow Improvements | Janya Malhotra Portfolio</title>
+    <meta name="description" content="Slow Improvements: A mindfulness and self-growth podcast and companion platform proposing small, intentional changes as an alternative to instant self-improvement.">
+    <link rel="icon" type="image/svg+xml" href="../assets/favicon.svg">
+    <link rel="icon" type="image/png" sizes="32x32" href="../assets/favicon-32x32.png">
+    <link rel="apple-touch-icon" href="../assets/apple-touch-icon.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;450;500;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --bg-page: #FAF8F5;
+            --bg-card: #FFFFFF;
+            --bg-subtle: #F3EFEA;
+            --ink-primary: #1C261D;
+            --ink-secondary: #526054;
+            --ink-muted: #7A897C;
+            --project-accent: #C49A45;
+            --project-accent-soft: rgba(196, 154, 69, 0.14);
+            --project-accent-hover: #A0782E;
+            --border-subtle: rgba(28, 38, 29, 0.09);
+            --border-medium: rgba(28, 38, 29, 0.18);
+            --shadow-card: 0 12px 32px -6px rgba(35, 45, 36, 0.08), 0 2px 6px rgba(0,0,0,0.03);
+            --shadow-hover: 0 18px 44px -8px rgba(35, 45, 36, 0.14), 0 4px 12px rgba(0,0,0,0.05);
+            --content-max-width: 840px;
+            --sidebar-width: 290px;
+        }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            background-color: var(--bg-page);
+            color: var(--ink-primary);
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            font-size: 16px;
+            line-height: 1.65;
+            letter-spacing: -0.011em;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
+        }
+
+        /* --- TOP READING PROGRESS BAR --- */
+        .case-study-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 3px;
+            background-color: var(--project-accent);
+            z-index: 1000;
+            transition: width 0.1s linear;
+        }
+
+        /* --- LAYOUT SHELL --- */
+        .case-study-shell {
+            display: flex;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* --- DESKTOP STICKY SIDEBAR --- */
+        .case-study-sidebar {
+            width: var(--sidebar-width);
+            flex-shrink: 0;
+            position: sticky;
+            top: 0;
+            height: 100vh;
+            overflow-y: auto;
+            padding: 48px 36px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            border-right: 1px solid var(--border-subtle);
+            background-color: var(--bg-page);
+            z-index: 100;
+        }
+
+        .sidebar-inner {
+            display: flex;
+            flex-direction: column;
+            gap: 40px;
+        }
+
+        .sidebar-back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--ink-muted);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            transition: color 0.2s ease, transform 0.2s ease;
+        }
+
+        .sidebar-back-link:hover {
+            color: var(--project-accent);
+            transform: translateX(-3px);
+        }
+
+        .back-icon {
+            transition: transform 0.2s ease;
+        }
+
+        .sidebar-back-link:hover .back-icon {
+            transform: translateX(-2px);
+        }
+
+        .sidebar-toc {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .toc-label {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--ink-muted);
+        }
+
+        .toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .toc-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 8px 10px;
+            border-radius: 8px;
+            color: var(--ink-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 450;
+            transition: all 0.2s ease;
+        }
+
+        .toc-bullet {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--ink-muted);
+            opacity: 0.4;
+            flex-shrink: 0;
+            transition: all 0.2s ease;
+        }
+
+        .toc-link:hover {
+            color: var(--ink-primary);
+            background-color: var(--bg-subtle);
+        }
+
+        .toc-link:hover .toc-bullet {
+            opacity: 0.8;
+            background-color: var(--project-accent);
+        }
+
+        .toc-link.is-active {
+            color: var(--project-accent);
+            font-weight: 600;
+            background-color: var(--bg-subtle);
+        }
+
+        .toc-link.is-active .toc-bullet {
+            background-color: var(--project-accent);
+            opacity: 1;
+            box-shadow: 0 0 0 3px var(--project-accent-soft);
+        }
+
+        .sidebar-footer {
+            font-size: 12px;
+            color: var(--ink-muted);
+        }
+
+        /* --- MOBILE HEADER & TOC --- */
+        .mobile-nav-bar {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 56px;
+            background-color: rgba(250, 248, 245, 0.94);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border-subtle);
+            padding: 0 20px;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 900;
+        }
+
+        .mobile-back-link {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            color: var(--ink-primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .mobile-toc-toggle {
+            background: none;
+            border: 1px solid var(--border-medium);
+            border-radius: 6px;
+            padding: 6px 10px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--ink-secondary);
+            cursor: pointer;
+        }
+
+        .mobile-toc-drawer {
+            display: none;
+            position: fixed;
+            top: 56px;
+            left: 0;
+            right: 0;
+            background-color: var(--bg-page);
+            border-bottom: 1px solid var(--border-medium);
+            padding: 20px;
+            max-height: 60vh;
+            overflow-y: auto;
+            z-index: 899;
+            box-shadow: var(--shadow-card);
+        }
+
+        .mobile-toc-drawer.is-open {
+            display: block;
+        }
+
+        .mobile-toc-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .mobile-toc-link {
+            color: var(--ink-secondary);
+            text-decoration: none;
+            font-size: 14px;
+            display: block;
+            padding: 6px 0;
+        }
+
+        /* --- MAIN READING COLUMN --- */
+        .case-study-content {
+            flex: 1;
+            max-width: var(--content-max-width);
+            margin: 0 auto;
+            padding: 80px 48px 120px 48px;
+            width: 100%;
+            min-width: 0;
+            box-sizing: border-box;
+        }
+
+        /* --- 01. PROJECT TITLE --- */
+        .case-study-main-header {
+            margin-bottom: 36px;
+        }
+
+        .project-category-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            color: var(--project-accent);
+            margin-bottom: 12px;
+            display: block;
+        }
+
+        .project-title {
+            font-size: clamp(34px, 4.4vw, 46px);
+            font-weight: 700;
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+            color: var(--ink-primary);
+        }
+
+        /* --- 02. HERO IMAGE --- */
+        .hero-media-wrapper {
+            margin-bottom: 64px;
+            border-radius: 16px;
+            overflow: hidden;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+        }
+
+        .hero-media {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
+            aspect-ratio: 3000 / 1688;
+        }
+
+        /* --- SECTION BASE STYLES --- */
+        .case-study-section {
+            margin-bottom: 80px;
+            scroll-margin-top: 40px;
+        }
+
+        .section-heading {
+            font-size: 24px;
+            font-weight: 650;
+            letter-spacing: -0.015em;
+            color: var(--ink-primary);
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .section-body {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            color: var(--ink-secondary);
+            font-size: 16px;
+            line-height: 1.68;
+        }
+
+        .section-body p {
+            margin: 0;
+        }
+
+        /* --- OVERVIEW & DETAILS GRID --- */
+        .overview-lead {
+            font-size: 18px;
+            line-height: 1.62;
+            color: var(--ink-primary);
+            margin-bottom: 32px;
+            font-weight: 420;
+        }
+
+        .overview-details-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 16px;
+            margin-bottom: 36px;
+        }
+
+        .details-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 18px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        .details-label {
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--ink-muted);
+            letter-spacing: 0.02em;
+        }
+
+        .details-value {
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--ink-primary);
+        }
+
+        /* --- VIEW IT LIVE BUTTON --- */
+        .live-link-container {
+            margin-top: 12px;
+        }
+
+        .live-link-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--project-accent);
+            color: #FFFFFF;
+            text-decoration: none;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px var(--project-accent-soft);
+        }
+
+        .live-link-button:hover {
+            background-color: var(--project-accent-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 16px var(--project-accent-soft);
+        }
+
+        /* --- PROBLEM POINTS --- */
+        .problem-points-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            margin-top: 12px;
+        }
+
+        .problem-points-list li {
+            position: relative;
+            padding-left: 24px;
+            color: var(--ink-secondary);
+            font-size: 15px;
+        }
+
+        .problem-points-list li::before {
+            content: "";
+            position: absolute;
+            left: 4px;
+            top: 10px;
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background-color: var(--project-accent);
+        }
+
+        /* --- MEDIA AND VIDEO BLOCKS --- */
+        .custom-section-media-stack {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+        }
+
+        .media-block {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+        }
+
+        .media-block img, .section-image {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+        }
+
+        .video-block {
+            background-color: #000000;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            border: 1px solid var(--border-subtle);
+        }
+
+        .section-video {
+            width: 100%;
+            height: auto;
+            display: block;
+            outline: none;
+        }
+
+        /* Card grid for 2-col and 3-col layouts */
+        .card-grid-2 {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .card-grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        /* --- CONCLUSION PULL-QUOTE --- */
+        .conclusion-pullquote {
+            margin-top: 24px;
+            padding: 24px 28px;
+            background-color: var(--bg-card);
+            border-left: 3px solid var(--project-accent);
+            border-radius: 0 12px 12px 0;
+            box-shadow: var(--shadow-card);
+        }
+
+        .conclusion-quote-text {
+            font-size: 16px;
+            font-style: italic;
+            color: var(--ink-primary);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        /* --- SECTION INLINE CAROUSEL (e.g. Episode structure) --- */
+        .inline-carousel-wrapper {
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .inline-carousel-track {
+            display: flex;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            gap: 20px;
+            border-radius: 14px;
+            scrollbar-width: thin;
+        }
+
+        .inline-carousel-slide {
+            flex: 0 0 100%;
+            scroll-snap-align: center;
+        }
+
+        /* --- OTHER PROJECTS CAROUSEL --- */
+        .carousel-container {
+            margin-top: 24px;
+            position: relative;
+        }
+
+        .carousel-controls {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        .carousel-btn {
+            background: var(--bg-card);
+            border: 1px solid var(--border-medium);
+            border-radius: 50%;
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--ink-secondary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-btn:hover {
+            border-color: var(--project-accent);
+            color: var(--project-accent);
+            background: var(--bg-subtle);
+        }
+
+        .carousel-dots {
+            display: flex;
+            gap: 6px;
+        }
+
+        .carousel-dot {
+            width: 7px;
+            height: 7px;
+            border-radius: 50%;
+            background-color: var(--border-medium);
+            transition: all 0.2s ease;
+        }
+
+        .carousel-dot.is-active {
+            background-color: var(--project-accent);
+            width: 18px;
+            border-radius: 4px;
+        }
+
+        .other-projects-track {
+            display: flex;
+            gap: 20px;
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+            padding-bottom: 12px;
+            scrollbar-width: thin;
+        }
+
+        .other-projects-track::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .other-projects-track::-webkit-scrollbar-thumb {
+            background: var(--border-medium);
+            border-radius: 3px;
+        }
+
+        .other-project-card {
+            flex: 0 0 320px; max-width: 320px; display: flex; flex-direction: column;
+            scroll-snap-align: start;
+            border-radius: 14px;
+            overflow: hidden;
+            border: 1px solid var(--border-subtle);
+            box-shadow: var(--shadow-card);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .other-project-card:hover {
+            transform: translateY(-4px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .card-hitbox {
+            display: flex;
+            flex-direction: column;
+            text-decoration: none;
+            color: inherit;
+            height: 100%;
+        }
+
+        .other-card-image-wrap {
+            width: 100%;
+            height: 152px;
+            overflow: hidden;
+            background-color: var(--bg-subtle, #FAF8F5);
+        }
+
+        .other-card-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .other-card-content {
+            padding: 14px 16px;
+            display: flex;
+            flex-direction: column;
+            gap: 5px; justify-content: space-between;
+            flex: 1;
+        }
+
+        .other-card-year {
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.08em;
+            opacity: 0.8;
+            text-transform: uppercase;
+        }
+
+        .other-card-title {
+            font-size: 16px;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0;
+        }
+
+        .other-card-summary {
+            font-size: 13px;
+            line-height: 1.5;
+            opacity: 0.88;
+            margin: 0;
+            flex: 1;
+        }
+
+        .other-card-link-text {
+            margin-top: 12px;
+            font-size: 13px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .arrow-glyph {
+            transition: transform 0.2s ease;
+        }
+
+        .card-hitbox:hover .arrow-glyph {
+            transform: translateX(4px);
+        }
+
+
+        /* --- GLOBAL RESPONSIVE MEDIA --- */
+        img, svg, video {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* --- CUSTOM SECTION MEDIA STACK & CONTROLLED FIGURE CARDS --- */
+        .custom-card-stack {
+            margin-top: 28px;
+            display: flex;
+            flex-direction: column;
+            gap: 36px;
+            width: 100%;
+        }
+
+        .custom-card-figure {
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 0;
+            margin-bottom: 0;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            box-sizing: border-box;
+            transition: box-shadow 0.25s ease, border-color 0.25s ease;
+        }
+
+        .custom-card-figure:hover {
+            box-shadow: var(--shadow-hover);
+            border-color: var(--border-medium);
+        }
+
+        /* Format Cards inside concept blocks */
+        .concept-format-block .custom-card-figure,
+        .custom-card-figure.is-format-card {
+            max-width: 100%;
+            margin-top: 16px;
+            border: 1px solid var(--border-subtle);
+            box-shadow: none;
+            background-color: var(--bg-page);
+        }
+
+        /* Underlying Image Sizing Rules: Complete slide displayed, 100% contained, no cropping */
+        .card-screenshot {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 520px;
+            display: block;
+            object-fit: contain;
+            aspect-ratio: 3000 / 1688;
+            background-color: #FAF8F5;
+        }
+
+        /* Card Captions: Crisp, deliberate, well-spaced documentation typography */
+        .custom-card-caption {
+            width: 100%;
+            padding: 14px 20px 16px 20px;
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-size: 13px;
+            line-height: 1.55;
+            color: var(--ink-secondary);
+            text-align: center;
+            border-top: 1px solid var(--border-subtle);
+            background-color: var(--bg-card);
+            box-sizing: border-box;
+        }
+
+        /* Episode Structure Interactive Carousel Sizing */
+        #episode-structure-carousel {
+            width: 100%;
+            max-width: 100%;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 24px;
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-card);
+            padding: 24px;
+            box-sizing: border-box;
+            box-shadow: var(--shadow-card);
+        }
+
+        .episode-carousel-track {
+            position: relative;
+            overflow: hidden;
+            border-radius: calc(var(--radius-card) - 4px);
+            width: 100%;
+        }
+
+        .episode-slide {
+            width: 100%;
+        }
+
+        .episode-slide img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 520px;
+            display: block;
+            object-fit: contain;
+            aspect-ratio: 3000 / 1688;
+            border-radius: calc(var(--radius-card) - 4px);
+            background-color: #FAF8F5;
+        }
+
+        .episode-carousel-controls {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 18px;
+            padding-top: 16px;
+            border-top: 1px solid var(--border-subtle);
+        }
+
+        .episode-nav-btn {
+            background: var(--bg-subtle);
+            border: 1px solid var(--border-subtle);
+            color: var(--ink-primary);
+            padding: 8px 18px;
+            border-radius: 999px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .episode-nav-btn:hover {
+            background: var(--bg-card);
+            border-color: var(--border-medium);
+            color: var(--project-accent);
+            transform: translateY(-1px);
+        }
+
+        .episode-indicator {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: var(--ink-secondary);
+        }
+
+        /* Dual Outcome Highlight Cards in Overview */
+        .outcomes-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin: 28px 0 32px 0;
+        }
+
+        .outcome-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 12px;
+            padding: 20px 22px;
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .outcome-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .outcome-tag {
+            font-size: 11px;
+            font-weight: 700;
+            letter-spacing: 0.08em;
+            text-transform: uppercase;
+            color: var(--project-accent);
+            background: var(--project-accent-soft);
+            padding: 3px 9px;
+            border-radius: 999px;
+        }
+
+        .outcome-title {
+            font-size: 15px;
+            font-weight: 700;
+            color: var(--ink-primary);
+        }
+
+        .outcome-desc {
+            font-size: 13.5px;
+            line-height: 1.55;
+            color: var(--ink-secondary);
+            margin: 0;
+        }
+
+        @media (max-width: 820px) {
+            .outcomes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* --- RESPONSIVE ADJUSTMENTS --- */
+        @media (max-width: 1024px) {
+            .custom-card-figure {
+                max-width: 92%;
+            }
+            .custom-card-figure.is-compact {
+                max-width: 78%;
+            }
+            #episode-structure-carousel {
+                max-width: 96%;
+            }
+
+            .case-study-sidebar {
+                width: 240px;
+                padding: 36px 24px;
+            }
+            .case-study-content {
+                padding: 60px 32px 100px 32px;
+            }
+            .overview-details-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 820px) {
+            .custom-card-figure,
+            .custom-card-figure.is-large-board,
+            .custom-card-figure.is-compact,
+            #episode-structure-carousel {
+                max-width: 100%;
+            }
+            .custom-card-stack {
+                gap: 24px;
+            }
+            .custom-card-caption {
+                padding: 10px 14px 12px 14px;
+                font-size: 12px;
+            }
+
+            .case-study-sidebar {
+                display: none;
+            }
+            .mobile-nav-bar {
+                display: flex;
+            }
+            .case-study-content {
+                padding: 84px 20px 80px 20px;
+            }
+            .overview-details-grid {
+                grid-template-columns: 1fr;
+            }
+            .card-grid-2, .card-grid-3 {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .project-title {
+                font-size: 28px;
+            }
+            .section-heading {
+                font-size: 20px;
+            }
+            .overview-lead {
+                font-size: 16px;
+            }
+            .other-project-card {
+                flex: 0 0 260px;
+            }
+        }
+    
+        /* --- INTERACTIVE CASE STUDY CAROUSEL SYSTEM --- */
+        .case-study-carousel {
+            width: 100%;
+            max-width: 100%;
+            background-color: var(--bg-card);
+            border: 1px solid var(--border-subtle);
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: var(--shadow-card);
+            margin: 28px 0;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .case-study-carousel:focus-visible {
+            border-color: var(--project-accent);
+            box-shadow: 0 0 0 3px var(--project-accent-soft), var(--shadow-card);
+        }
+
+        .carousel-viewport {
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+        }
+
+        .carousel-track {
+            display: flex;
+            width: 100%;
+            transition: transform 0.35s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .carousel-slide {
+            flex: 0 0 100%;
+            width: 100%;
+            min-width: 100%;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+
+                .carousel-slide-image-wrap {
+            position: relative;
+            width: 100%;
+            background-color: #FAF8F5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .carousel-slide-image {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            max-height: 520px;
+            display: block;
+            object-fit: contain;
+            aspect-ratio: 3000 / 1688;
+            margin-inline: auto;
+            cursor: zoom-in;
+            transition: opacity 0.2s ease;
+        }
+
+        .carousel-slide-image:hover {
+            opacity: 0.96;
+        }
+
+        .carousel-slide-zoom-hint {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 550;
+            color: var(--ink-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 5;
+        }
+
+        .carousel-slide-zoom-hint:hover {
+            background: #ffffff;
+            color: var(--project-accent);
+            border-color: var(--project-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+        }
+
+        /* --- LIGHTBOX MODAL --- */
+        .carousel-lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 26, 18, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .carousel-lightbox-modal.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .carousel-lightbox-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .carousel-lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            background: #ffffff;
+        }
+
+        .carousel-lightbox-close {
+            position: absolute;
+            top: -44px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 22px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-lightbox-modal {
+                padding: 16px;
+            }
+            .carousel-lightbox-close {
+                top: -40px;
+                right: 0;
+                width: 32px;
+                height: 32px;
+                font-size: 20px;
+            }
+            .carousel-slide-zoom-hint {
+                bottom: 10px;
+                right: 10px;
+                padding: 4px 10px;
+                font-size: 11px;
+            }
+        }
+
+        .carousel-slide-info {
+            padding: 20px 24px;
+            border-top: 1px solid var(--border-subtle);
+            background-color: var(--bg-card);
+        }
+
+        .carousel-slide-title {
+            font-family: 'Inter', -apple-system, sans-serif;
+            font-size: 16px;
+            font-weight: 650;
+            color: var(--ink-primary);
+            margin-bottom: 6px;
+            letter-spacing: -0.01em;
+        }
+
+        .carousel-slide-desc {
+            font-size: 13.5px;
+            line-height: 1.55;
+            color: var(--ink-secondary);
+            margin: 0;
+        }
+
+        .carousel-controls-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 24px;
+            border-top: 1px solid var(--border-subtle);
+            background-color: var(--bg-subtle);
+        }
+
+        .carousel-counter {
+            font-size: 13px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            color: var(--ink-muted);
+            font-variant-numeric: tabular-nums;
+        }
+
+        .carousel-nav-btns {
+            display: flex;
+            gap: 10px;
+        }
+
+        .carousel-nav-btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            border: 1px solid var(--border-medium);
+            background-color: var(--bg-card);
+            color: var(--ink-primary);
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.2s ease, border-color 0.2s ease;
+        }
+
+        .carousel-nav-btn:hover:not(:disabled) {
+            background-color: var(--project-accent);
+            color: #FFFFFF;
+            border-color: var(--project-accent);
+            transform: scale(1.05);
+        }
+
+        .carousel-nav-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        /* --- TABBED CAROUSEL NAVIGATION (PROCESS SECTION) --- */
+        .process-tabs-header {
+            display: flex;
+            align-items: flex-end;
+            gap: 0;
+            padding: 14px 16px 0 16px;
+            background-color: var(--bg-subtle);
+            border-bottom: 1px solid var(--border-subtle);
+            overflow-x: auto;
+            scrollbar-width: thin;
+            position: relative;
+        }
+
+        .process-tab-btn {
+            position: relative;
+            border: 1px solid var(--border-subtle);
+            border-bottom: none;
+            border-radius: 8px 8px 0 0;
+            background-color: #E8E3DB;
+            color: var(--ink-secondary);
+            font-family: inherit;
+            font-size: 13px;
+            font-weight: 550;
+            padding: 9px 16px 8px;
+            margin-right: -4px;
+            cursor: pointer;
+            white-space: nowrap;
+            transition: all 0.2s cubic-bezier(0.25, 1, 0.5, 1);
+            box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.02);
+            z-index: 1;
+        }
+
+        .process-tab-btn:hover:not(.is-active) {
+            background-color: #F3EFEA;
+            color: var(--ink-primary);
+            transform: translateY(-2px);
+            z-index: 5;
+        }
+
+        .process-tab-btn.is-active {
+            background-color: var(--bg-card);
+            color: var(--project-accent);
+            font-weight: 650;
+            border-color: var(--border-medium);
+            border-top: 2px solid var(--project-accent);
+            padding-bottom: 10px;
+            margin-bottom: -1px;
+            transform: translateY(-2px);
+            box-shadow: 0 -3px 8px rgba(0, 0, 0, 0.05);
+            z-index: 10;
+        }
+
+    
+        .section-sub-heading {
+            font-family: inherit;
+            font-size: 20px;
+            font-weight: 650;
+            color: var(--ink-primary);
+            letter-spacing: -0.012em;
+            margin-top: 40px;
+            margin-bottom: 12px;
+        }
+
+        .engagement-framework-intro {
+            margin-top: 40px;
+            margin-bottom: 24px;
+        }
+
+        .engagement-framework-intro .section-sub-heading {
+            margin-top: 0;
+            margin-bottom: 10px;
+        }
+
+    </style>
+    <link rel="stylesheet" href="../assets/css/global-nav.css">
+    <link rel="stylesheet" href="../assets/css/global-footer.css">
+  <link rel="stylesheet" href="../assets/css/lightbox.css">
+</head>
+<body>
+    <div class="case-study-progress" id="case-study-progress" aria-hidden="true"></div>
+
+    <!-- Global Navigation Bar (Top-Right) -->
+    <nav class="case-study-global-nav" aria-label="Main Navigation">
+        <ul class="case-study-global-nav-links">
+            <li><a href="../index.html#projects" class="case-study-global-nav-link is-active" aria-current="page">Projects</a></li>
+            <li><a href="../about/index.html" class="case-study-global-nav-link">About Me</a></li>
+            <li><a href="../index.html#contact" class="case-study-global-nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+
+    <div class="case-study-shell">
+        <!-- Desktop Sticky Left Sidebar -->
+        <aside class="case-study-sidebar" aria-label="Table of contents">
+            <div class="sidebar-inner">
+                <a href="../index.html#projects" class="sidebar-back-link">
+                    <svg class="back-icon" width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                    <span>All projects</span>
+                </a>
+
+                <nav class="sidebar-toc" aria-label="Table of contents">
+                <span class="toc-title">Contents</span>
+                <ul class="toc-list">
+                    <li class="toc-item"><a href="#overview" class="toc-link is-active">Overview</a></li>
+                    <li class="toc-item"><a href="#problem" class="toc-link">Problem</a></li>
+                    <li class="toc-item"><a href="#process" class="toc-link">Process</a></li>
+                    <li class="toc-item"><a href="#podcast-ideation" class="toc-link">Podcast Ideation</a></li>
+                    <li class="toc-item"><a href="#final-idea" class="toc-link">Final Idea: Website</a></li>
+                    <li class="toc-item"><a href="#inspirations" class="toc-link">Inspirations &amp; Brand</a></li>
+                    <li class="toc-item"><a href="#series-structure" class="toc-link">Series Structure</a></li>
+                    <li class="toc-item"><a href="#episode-structure" class="toc-link">Episode Structure</a></li>
+                    <li class="toc-item"><a href="#website-design" class="toc-link">Website Design</a></li>
+                    <li class="toc-item"><a href="#ending-thoughts" class="toc-link">Ending Thoughts</a></li>
+                </ul>
+            </nav>
+            </div>
+            <div class="sidebar-footer">
+                <span>© 2026 Janya Malhotra</span>
+            </div>
+        </aside>
+
+        <!-- Mobile Header Bar -->
+        <header class="mobile-nav-bar">
+            <a href="../index.html#projects" class="mobile-back-link">
+                <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                <span>All projects</span>
+            </a>
+            <button type="button" class="mobile-toc-toggle" id="mobile-toc-toggle" aria-expanded="false" aria-controls="mobile-toc-drawer">Contents ▾</button>
+        </header>
+
+        <!-- Mobile TOC Drawer -->
+        <div class="mobile-toc-drawer" id="mobile-toc-drawer" aria-hidden="true">
+            <ul class="mobile-toc-list">
+                <li class="mobile-toc-item"><a href="#overview" class="mobile-toc-link is-active">Overview</a></li>
+                <li class="mobile-toc-item"><a href="#problem" class="mobile-toc-link">Problem</a></li>
+                <li class="mobile-toc-item"><a href="#process" class="mobile-toc-link">Process</a></li>
+                <li class="mobile-toc-item"><a href="#podcast-ideation" class="mobile-toc-link">Podcast Ideation</a></li>
+                <li class="mobile-toc-item"><a href="#final-idea" class="mobile-toc-link">Final Idea: Website</a></li>
+                <li class="mobile-toc-item"><a href="#inspirations" class="mobile-toc-link">Inspirations &amp; Brand</a></li>
+                <li class="mobile-toc-item"><a href="#series-structure" class="mobile-toc-link">Series Structure</a></li>
+                <li class="mobile-toc-item"><a href="#episode-structure" class="mobile-toc-link">Episode Structure</a></li>
+                <li class="mobile-toc-item"><a href="#website-design" class="mobile-toc-link">Website Design</a></li>
+                <li class="mobile-toc-item"><a href="#ending-thoughts" class="mobile-toc-link">Ending Thoughts</a></li>
+            </ul>
+        </div>
+
+        <!-- Main Reading Column -->
+        <main class="case-study-content" id="main-content">
+            <!-- 01. Title Header -->
+            <header class="case-study-main-header">
+                <span class="project-category-eyebrow">PODCAST AND COMPANION PLATFORM</span>
+                <h1 class="project-title">Slow Improvements</h1>
+            </header>
+
+            <!-- 02. Hero Cover (PDF Page 34) -->
+            <figure class="hero-media-wrapper">
+                <img src="../framerusercontent.com/images/slow-improvements-hero.jpg" alt="Slow Improvements: A Podcast Platform &amp; Experience Cover" class="hero-media" loading="eager" decoding="async">
+            </figure>
+
+            <!-- 03. Overview -->
+            <section id="overview" class="case-study-section section-overview">
+                <h2 class="section-heading">Overview</h2>
+                <p class="overview-lead">Slow Improvements is a mindfulness and self-growth podcast exploring the idea that meaningful personal growth does not need to happen instantly. Through thoughtful conversations and structured episodes, it explores everyday challenges, habits, mindset and personal development.</p>
+                <div class="section-body">
+                    <p>Alongside the podcast, I designed a dedicated podcast platform that extends the listening experience beyond audio. Designed initially around Slow Improvements, the platform brings together episodes, research references, transcripts, chapter breakdowns and community discussions. Its underlying concept and experience are adaptable to other podcasts as well.</p>
+                    <p>The project therefore brings together two connected design outcomes: the creation of the podcast itself and the design of a companion podcast platform.</p>
+                </div>
+
+                <!-- Visual Groupings: The Two Connected Design Outcomes -->
+                <div class="outcomes-grid">
+                    <div class="outcome-card">
+                        <div class="outcome-badge">
+                            <span class="outcome-tag">Outcome 01</span>
+                            <span class="outcome-title">Podcast</span>
+                        </div>
+                        <p class="outcome-desc">A mindfulness and self-growth podcast with its own identity, content, episodes and structure, exploring personal growth, habits, mindset and everyday challenges.</p>
+                    </div>
+                    <div class="outcome-card">
+                        <div class="outcome-badge">
+                            <span class="outcome-tag">Outcome 02</span>
+                            <span class="outcome-title">Podcast Platform</span>
+                        </div>
+                        <p class="outcome-desc">A dedicated digital platform designed specifically to support this podcast, but built around a concept and functionality that could be adapted for other podcasts too.</p>
+                    </div>
+                </div>
+
+                <div class="overview-details-grid">
+                    <div class="details-item">
+                        <span class="details-label">Project Type</span>
+                        <span class="details-value">Podcast Design / Digital Product Design</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Project Category</span>
+                        <span class="details-value">Podcasts and Podcast Platform</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Project Timeline</span>
+                        <span class="details-value">2026 (1 week)</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">My Role</span>
+                        <span class="details-value">Individual Project</span>
+                    </div>
+                    <div class="details-item">
+                        <span class="details-label">Tools</span>
+                        <span class="details-value">Figma, Figma Make</span>
+                    </div>
+                </div>
+                <div class="live-link-container">
+                    <a href="https://booth-mummy-92392328.figma.site" target="_blank" rel="noopener noreferrer" class="live-link-button">
+                        <span>View it Live</span>
+                        <svg width="14" height="14" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="external-icon"><path d="M7 3H3a2 2 0 0 0-2 2v8a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2V9"/><path d="M10 1h5v5"/><path d="M15 1L7 9"/></svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- 04. Problem -->
+            <section id="problem" class="case-study-section section-problem">
+                <h2 class="section-heading">Problem</h2>
+                <div class="section-body">
+                    <p class="problem-lead">Podcast listening platforms often focus on delivering audio or video content, leaving little room for listeners to understand the research behind an episode or meaningfully engage with its ideas and community. There is a gap between simply consuming a podcast and being able to explore, question, discuss, and contribute to the conversations it introduces.</p>
+                    <ul class="problem-points-list">
+                        <li><strong>Passive content consumption:</strong> Most podcast experiences are designed primarily around listening or watching, with limited opportunities to engage with the content beyond the episode itself.</li>
+                        <li><strong>Limited transparency:</strong> Listeners often have little visibility into the research, references, sources, and context that inform the conversations they consume.</li>
+                        <li><strong>Fragmented community interaction:</strong> Discussions and audience interactions are scattered across different platforms, making it difficult to build a connected community around a podcast.</li>
+                        <li><strong>Limited listener participation:</strong> Listeners may have questions, personal experiences, or stories they want to share, but there are few dedicated ways to contribute to future conversations.</li>
+                        <li><strong>Lack of structured context:</strong> Long-form conversations can be difficult to navigate without clear episode structures, chapter breakdowns, transcripts, and supporting information.</li>
+                    </ul>
+                </div>
+            </section>
+
+            <!-- 05. SECTION 1: Process -->
+            <section id="process" class="case-study-section">
+                <h2 class="section-heading">Process</h2>
+                <div class="section-body">
+                    <p>The project began with an in-depth exploration of the health and wellness space, initially focusing heavily on manifestation. As patterns emerged, the research naturally expanded into the broader themes of self-growth and mindfulness.</p>
+                    <p>The process involved collecting information, processing patterns, identifying observations, and translating those observations into insights that could guide the final direction.</p>
+                    
+                    <ul class="problem-points-list" style="margin-top: 20px; margin-bottom: 32px;">
+                        <li><strong>Data Collection:</strong> Began with an in-depth exploration of the health and wellness space, initially focusing heavily on manifestation.</li>
+                        <li><strong>Data Processing:</strong> As patterns emerged, we realized that manifestation works best as a subtopic rather than a standalone niche. The collected data naturally fit into the broader category of self-growth and mindfulness, under which manifestation, mindset, and wellness coexist.</li>
+                        <li><strong>Observations:</strong> We reviewed patterns across the data and noted that successful wellness podcasts are calm, structured, and easy to consume alongside daily activities. Engagement and deeper context often live across multiple platforms, with different spaces serving different community needs.</li>
+                        <li><strong>Insights:</strong> Trust in a wellness podcast is built through transparency. Listeners engage more deeply when they can see what goes into the content, including research, structure, nuance, and even imperfections.</li>
+                    </ul>
+                </div>
+
+                <!-- Intro Diagram: Process Flow -->
+                <div class="custom-card-stack" style="margin-bottom: 32px;">
+                    <figure class="custom-card-figure is-large-board">
+                        <img src="../framerusercontent.com/images/slow-page-02-process.jpg" data-legacy="slow-process-diagram.jpg" alt="Process Diagram: Data Collection, Data Processing, Observations, and Insights" class="card-screenshot" loading="lazy" decoding="async">
+                        <figcaption class="custom-card-caption">Process diagram showing Data Collection, Data Processing, Observations, and Insights.</figcaption>
+                    </figure>
+                </div>
+
+                                <!-- Engagement Framework Introduction -->
+                <div class="engagement-framework-intro">
+                    <h3 class="section-sub-heading">Engagement Framework</h3>
+                    <div class="section-body">
+                        <p>A collection of frameworks and strategic exercises used to explore stakeholder perspectives, uncover underlying challenges, map relationships and establish the values guiding the project.</p>
+                    </div>
+                </div>
+
+                <!-- Tabbed Carousel: 6 Research & Framework Artefacts -->
+                <div class="case-study-carousel tabbed-carousel" id="process-carousel" role="region" aria-label="Process Research and Frameworks Carousel">
+                    <!-- Tabbed Navigation Header -->
+                    <div class="process-tabs-header" id="process-tabs" role="tablist" aria-label="Process slides navigation tabs">
+                        <button type="button" class="process-tab-btn is-active" role="tab" aria-selected="true" data-index="0">Iceberg Model</button>
+                        <button type="button" class="process-tab-btn" role="tab" aria-selected="false" data-index="1">Action Plan 1</button>
+                        <button type="button" class="process-tab-btn" role="tab" aria-selected="false" data-index="2">Action Plan 2</button>
+                        <button type="button" class="process-tab-btn" role="tab" aria-selected="false" data-index="3">Power Map</button>
+                        <button type="button" class="process-tab-btn" role="tab" aria-selected="false" data-index="4">Our Values</button>
+                    </div>
+
+                    <div class="carousel-viewport">
+                        <div class="carousel-track" id="process-carousel-track">
+                            <!-- Slide 1: Iceberg Model -->
+                            <div class="carousel-slide" data-index="0">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-03-iceberg.jpg" alt="Iceberg Model: Visible Content, Personal Development Practices, Psychology &amp; Neuroscience Foundations, Philosophy &amp; Human Meaning" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Iceberg Model</h3>
+                                    <p class="carousel-slide-desc">Mapping the unseen layers beneath visible wellness content, connecting practical habits to neuroscience, psychology, and personal philosophy.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Action Plan 1 -->
+                            <div class="carousel-slide" data-index="1">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-action-plan-1-hd.jpg" alt="Action Plan 1: Interviewer, Editor &amp; Researcher decision-making flowchart on burnout crisis advice" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Action Plan 1</h3>
+                                    <p class="carousel-slide-desc">Ethical decision-making matrix and content workflow structuring topic selection and guest criteria.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Action Plan 2 -->
+                            <div class="carousel-slide" data-index="2">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-action-plan-2-hd.jpg" alt="Action Plan 2: Interviewer, Editor &amp; Researcher decision-making flowchart on health and money claims" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Action Plan 2</h3>
+                                    <p class="carousel-slide-desc">Rigorous fact-checking and validation flow for sensitive health, finance, and wellness claims.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4: Power Map -->
+                            <div class="carousel-slide" data-index="3">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-power-map-hd.png" alt="Power Map: Our Agenda, Their Agenda, Mission &amp; Action Plan, Opposing Actors, Partners, Biggest Threats, and Key Audiences" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Power Map</h3>
+                                    <p class="carousel-slide-desc">Comprehensive stakeholder power map evaluating audience vulnerability, commercial pressures, and aligning incentives toward transparent content creation.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 5: Our Values -->
+                            <div class="carousel-slide" data-index="4">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-values-hd.png" alt="Our Values: Neutrality, Respect, Power &amp; Transparency, and Well Researched" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Our Values</h3>
+                                    <p class="carousel-slide-desc">Guiding principles: rejecting toxic positivity and quick fixes in favor of patient, sustainable personal improvement.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-controls-bar">
+                        <span class="carousel-counter" id="process-carousel-counter">01 / 05</span>
+                        <div class="carousel-nav-btns">
+                            <button type="button" class="carousel-nav-btn" id="process-carousel-prev" aria-label="Previous process slide">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                            </button>
+                            <button type="button" class="carousel-nav-btn" id="process-carousel-next" aria-label="Next process slide">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13l5-5-5-5"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 06. SECTION 2: Podcast Ideation -->
+            <section id="podcast-ideation" class="case-study-section">
+                <h2 class="section-heading">Podcast Ideation</h2>
+                <div class="section-body">
+                    <p>A lot of research goes into making a good podcast. To cover different topics thoughtfully and actually communicate what matters, you need more than just ideas, you need structure.</p>
+                    <p>That’s why I came up with one. It helps shape the research into conversations that flow, make sense, and keep listeners engaged from start to finish.</p>
+                </div>
+
+                <!-- 5 Slides Carousel (Ideation + 4 Formats, excluding Final Idea) -->
+                <div class="case-study-carousel" id="ideation-carousel" role="region" aria-label="Podcast Ideation and Formats Carousel">
+                    <div class="carousel-viewport">
+                        <div class="carousel-track" id="ideation-carousel-track">
+                            <!-- Slide 1: Ideation -->
+                            <div class="carousel-slide" data-index="0">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-09-ideation.jpg" data-legacy="slow-ideation-formats.jpg" alt="Ideation: Podcast Structure Overview" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Ideation</h3>
+                                    <p class="carousel-slide-desc">Translating research insights into structured conversational formats that balance rigor and accessibility.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Primary Format -->
+                            <div class="carousel-slide" data-index="1">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-10-format-1.jpg" alt="Primary Format: One on One" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Primary Format: One on One</h3>
+                                    <p class="carousel-slide-desc">Host invites one guest each episode to explore their journey, mindset, and learnings in relation to their achievements.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Secondary Format -->
+                            <div class="carousel-slide" data-index="2">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-11-format-2.jpg" alt="Secondary Format: Roundtable" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Secondary Format: Roundtable</h3>
+                                    <p class="carousel-slide-desc">Host convenes multiple guests to highlight contrasting viewpoints, shared experiences, and dynamic debate.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 4: Tertiary Format -->
+                            <div class="carousel-slide" data-index="3">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-12-format-3.jpg" alt="Tertiary Format: Standalone" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Tertiary Format: Standalone</h3>
+                                    <p class="carousel-slide-desc">Host talks through a clear script solo, offering direct information, research breakdowns, and actionable advice.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 5: Quaternary Format -->
+                            <div class="carousel-slide" data-index="4">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-13-format-4.jpg" alt="Quaternary Format: Live Stream" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Quaternary Format: Live Stream</h3>
+                                    <p class="carousel-slide-desc">Host and guests interact with the audience live, building real-time community connection through questions and spontaneous conversations.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-controls-bar">
+                        <span class="carousel-counter" id="ideation-carousel-counter">01 / 05</span>
+                        <div class="carousel-nav-btns">
+                            <button type="button" class="carousel-nav-btn" id="ideation-carousel-prev" aria-label="Previous ideation slide">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                            </button>
+                            <button type="button" class="carousel-nav-btn" id="ideation-carousel-next" aria-label="Next ideation slide">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13l5-5-5-5"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 07. SECTION 3: Final Idea - A Podcast Website -->
+            <section id="final-idea" class="case-study-section">
+                <h2 class="section-heading">Final Idea: Website</h2>
+                <div class="custom-card-stack">
+                    <figure class="custom-card-figure">
+                        <img src="../framerusercontent.com/images/slow-page-14-final-idea.jpg" data-legacy="slow-final-idea.jpg" alt="Final Idea: A Podcast Website - Slow Improvements Platform" class="card-screenshot" loading="lazy" decoding="async">
+                        <figcaption class="custom-card-caption">Final Idea: A dedicated podcast companion website extending the listening experience.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- 08. SECTION 4: Inspirations and Brand Direction -->
+            <section id="inspirations" class="case-study-section">
+                <h2 class="section-heading">Inspirations &amp; Brand Direction</h2>
+                <div class="section-body">
+                    <p>The visual and communicative direction bridges casual conversational intimacy with editorial structure, balancing content discovery with genuine community interaction.</p>
+                </div>
+
+                <!-- Standard 3-slide Carousel: A, B, C -->
+                <div class="case-study-carousel" id="inspirations-carousel" role="region" aria-label="Inspirations and Brand Direction Carousel">
+                    <div class="carousel-viewport">
+                        <div class="carousel-track" id="inspirations-carousel-track">
+                            <!-- Slide 1: A. Podcast Inspiration -->
+                            <div class="carousel-slide" data-index="0">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-15-podcast-inspiration.jpg" alt="Podcast Inspirations: Anything Goes with Emma Chamberlain and Pretty Lonesome with Madeline Argy" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">A. Podcast Inspiration</h3>
+                                    <p class="carousel-slide-desc">Shows like <em>Anything Goes</em> and <em>Pretty Lonesome</em> inspired the conversational flow, casual setting, and ongoing audience relationship built through honesty and consistency.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: B. Website Inspiration -->
+                            <div class="carousel-slide" data-index="1">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-16-website-inspiration.jpg" alt="Website Inspirations: YouTube and Reddit" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">B. Website Inspiration</h3>
+                                    <p class="carousel-slide-desc">Synthesizing YouTube’s structured episode discovery and detailed playback context with Reddit’s participatory, community-driven discussion threads.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: C. Brand Inspiration -->
+                            <div class="carousel-slide" data-index="2">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-17-brand-inspiration.jpg" alt="Brand Inspiration: Earthy Color Palette and Classic Typography" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">C. Brand Inspiration</h3>
+                                    <p class="carousel-slide-desc">Muted, earthy color palette paired with timeless Georgia and FB Factor typefaces to create a grounded, calm, and uncluttered visual sanctuary.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-controls-bar">
+                        <span class="carousel-counter" id="inspirations-carousel-counter">01 / 03</span>
+                        <div class="carousel-nav-btns">
+                            <button type="button" class="carousel-nav-btn" id="inspirations-carousel-prev" aria-label="Previous inspiration slide">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                            </button>
+                            <button type="button" class="carousel-nav-btn" id="inspirations-carousel-next" aria-label="Next inspiration slide">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13l5-5-5-5"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 09. SECTION 5: Podcast Series and Episode Structure -->
+            <section id="series-structure" class="case-study-section">
+                <h2 class="section-heading">Podcast Series Structure</h2>
+                <div class="section-body">
+                    <p>The podcast follows a series of connected topics that explore small but meaningful improvements in everyday life. Each episode addresses a different barrier to personal growth, moving from physical environments to mental pressure and finally to the fear of trying.</p>
+                </div>
+
+                <div class="custom-card-stack">
+                    <figure class="custom-card-figure is-large-board">
+                        <img src="../framerusercontent.com/images/slow-page-19-series-structure.jpg" alt="Podcast Series Structure Diagram" class="card-screenshot" loading="lazy" decoding="async">
+                        <figcaption class="custom-card-caption">Series structure mapping the three-episode progression.</figcaption>
+                    </figure>
+                </div>
+            </section>
+
+            <!-- 10. Episode Structure -->
+            <section id="episode-structure" class="case-study-section">
+                <h2 class="section-heading">Episode Structure</h2>
+                <div class="section-body">
+                    <p>Each episode follows a deliberate four-part progression: <strong>01 Intro</strong>, <strong>02 The Why?</strong>, <strong>03 The How.</strong>, and <strong>04 Closing Thoughts</strong>.</p>
+                </div>
+
+                <!-- Standardized Episode Structure Carousel -->
+                <div class="case-study-carousel" id="episode-carousel" role="region" aria-label="Episode Structure Carousel">
+                    <div class="carousel-viewport">
+                        <div class="carousel-track" id="episode-carousel-track">
+                            <!-- Slide 1: Episode 1 -->
+                            <div class="carousel-slide" data-index="0">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-20-carousel-ep1.jpg" data-legacy="slow-episode-ep1.jpg" alt="Episode 1: Cleaning Your Room Structure" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Episode 1: Cleaning your room won’t fix everything, but it's a slow improvement</h3>
+                                    <p class="carousel-slide-desc">Focusing on removing physical friction in daily environments before attempting mindset or motivation shifts.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 2: Episode 2 -->
+                            <div class="carousel-slide" data-index="1">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-21-carousel-ep2.jpg" data-legacy="slow-episode-ep2.jpg" alt="Episode 2: Letting Go of FOMO Structure" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Episode 2: Letting go of FOMO won’t fix everything, but it’s a slow improvement</h3>
+                                    <p class="carousel-slide-desc">Unpacking comparison culture, early-success pressure, and the urgency that fuels chronic burnout.</p>
+                                </div>
+                            </div>
+
+                            <!-- Slide 3: Episode 3 -->
+                            <div class="carousel-slide" data-index="2">
+                                <div class="carousel-slide-image-wrap">
+                                    <img src="../framerusercontent.com/images/slow-page-22-carousel-ep3.jpg" data-legacy="slow-episode-ep3.jpg" alt="Episode 3: Being Bad at Things Structure" class="carousel-slide-image" loading="eager" decoding="async">
+                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
+                                </div>
+                                <div class="carousel-slide-info">
+                                    <h3 class="carousel-slide-title">Episode 3: Being bad at things isn't great, but it's a slow improvement</h3>
+                                    <p class="carousel-slide-desc">Overcoming fear of judgment and learning how to start and persist even when you're initially bad at something.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="carousel-controls-bar">
+                        <span class="carousel-counter" id="episode-carousel-counter">01 / 03</span>
+                        <div class="carousel-nav-btns">
+                            <button type="button" class="carousel-nav-btn" id="episode-carousel-prev" aria-label="Previous episode slide">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                            </button>
+                            <button type="button" class="carousel-nav-btn" id="episode-carousel-next" aria-label="Next episode slide">
+                                <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13l5-5-5-5"/></svg>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 11. SECTION 6: Website Design - Home Page -->
+            <section id="website-design" class="case-study-section">
+                <h2 class="section-heading">Website Design</h2>
+                <div class="section-body">
+                    <p>The companion web platform transforms the podcast into an interactive, multi-dimensional space, supporting deep content exploration, audience input, and ethical community action.</p>
+                </div>
+
+                <!-- Screen A: Homepage -->
+                <div class="website-screen-group" style="margin-top: 36px;">
+                    <h3 class="website-screen-label" style="font-size: 1.15rem; font-weight: 650; margin-bottom: 12px; color: var(--ink-primary); letter-spacing: -0.01em;">A. Homepage</h3>
+                    <p style="color: var(--ink-secondary); margin-bottom: 20px; font-size: 15px; line-height: 1.6;">The home page introduces the podcast, its core philosophies, and recent activities while highlighting essential community focus areas.</p>
+                    
+                    <div class="custom-card-stack">
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-23-home-page-1.jpg" data-legacy="slow-homepage.jpg" alt="Home Page, initial landing page (PDF page 23)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Home Page: Initial landing experience and editorial introduction.</figcaption>
+                        </figure>
+
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-24-home-page-2.jpg" alt="Home Page, introduction to the podcast and recent activity (PDF page 24)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Home Page: Recent podcast activity and featured insights.</figcaption>
+                        </figure>
+
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-25-home-page-3.jpg" alt="Home Page, the In Focus Right Now / Giveaway section (PDF page 25)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Home Page: "In Focus Right Now" community spotlight.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Screen B: Podcast Archive -->
+                <div class="website-screen-group" style="margin-top: 56px;">
+                    <h3 class="website-screen-label" style="font-size: 1.15rem; font-weight: 650; margin-bottom: 12px; color: var(--ink-primary); letter-spacing: -0.01em;">B. Podcast Archive</h3>
+                    <p style="color: var(--ink-secondary); margin-bottom: 20px; font-size: 15px; line-height: 1.6;">The archive provides a structured way to browse episodes with season filtering, an integrated audio player, and deep transcript breakdowns.</p>
+                    
+                    <div class="custom-card-stack">
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-26-archive-1.jpg" alt="Podcast Archive, episode listing, category and season filters, and built-in episode player (PDF page 26)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Podcast Archive: Episode listing, category filters, and built-in player.</figcaption>
+                        </figure>
+
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-27-archive-2.jpg" alt="Podcast Archive, reflective discussion and episode-specific community section (PDF page 27)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Podcast Archive: Episode reflection notes and community discussion.</figcaption>
+                        </figure>
+
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-28-archive-3.jpg" alt="Podcast Archive, research and sources, detailed chapter breakdown, and AI-generated episode transcript (PDF page 28)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Podcast Archive: Research references, chapter breakdown, and full transcripts.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Screen C: Ask a Question -->
+                <div class="website-screen-group" style="margin-top: 56px;">
+                    <h3 class="website-screen-label" style="font-size: 1.15rem; font-weight: 650; margin-bottom: 12px; color: var(--ink-primary); letter-spacing: -0.01em;">C. Ask a Question</h3>
+                    <p style="color: var(--ink-secondary); margin-bottom: 20px; font-size: 15px; line-height: 1.6;">Allows listeners to submit specific questions directly, directly influencing conversation topics in future episodes.</p>
+                    
+                    <div class="custom-card-stack">
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-29-ask-a-question.jpg" alt="Website Design - Ask a Question (PDF page 29)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Ask a Question interface for audience submissions.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Screen D: Submit a Story -->
+                <div class="website-screen-group" style="margin-top: 56px;">
+                    <h3 class="website-screen-label" style="font-size: 1.15rem; font-weight: 650; margin-bottom: 12px; color: var(--ink-primary); letter-spacing: -0.01em;">D. Submit a Story</h3>
+                    <p style="color: var(--ink-secondary); margin-bottom: 20px; font-size: 15px; line-height: 1.6;">Enables audience members to share personal life narratives and dilemmas to receive thoughtful second opinions on air.</p>
+                    
+                    <div class="custom-card-stack">
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-30-submit-a-story.jpg" alt="Website Design - Submit a Story (PDF page 30)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Submit a Story interface for audience narratives.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Screen E: Giveaway -->
+                <div class="website-screen-group" style="margin-top: 56px;">
+                    <h3 class="website-screen-label" style="font-size: 1.15rem; font-weight: 650; margin-bottom: 12px; color: var(--ink-primary); letter-spacing: -0.01em;">E. Giveaway</h3>
+                    <p style="color: var(--ink-secondary); margin-bottom: 20px; font-size: 15px; line-height: 1.6;">Highlights meaningful organizations, causes, and mutual aid efforts that warrant listener attention and community support.</p>
+                    
+                    <div class="custom-card-stack">
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-31-giveaway.jpg" alt="Website Design - Giveaway (PDF page 31)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">Giveaway and Responsibility Hub highlighting essential community organizations.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+
+                <!-- Screen F: User Profile -->
+                <div class="website-screen-group" style="margin-top: 56px;">
+                    <h3 class="website-screen-label" style="font-size: 1.15rem; font-weight: 650; margin-bottom: 12px; color: var(--ink-primary); letter-spacing: -0.01em;">F. User Profile</h3>
+                    <p style="color: var(--ink-secondary); margin-bottom: 20px; font-size: 15px; line-height: 1.6;">A personal space where listeners track saved episodes, review past submitted questions, and revisit their submitted stories.</p>
+                    
+                    <div class="custom-card-stack">
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-32-user-profile-1.jpg" alt="User Profile, profile overview and saved episodes (PDF page 32)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">User Profile: Overview and saved episode bookmarks.</figcaption>
+                        </figure>
+
+                        <figure class="custom-card-figure">
+                            <img src="../framerusercontent.com/images/slow-page-33-user-profile-2.jpg" alt="User Profile, submitted questions and submitted story (PDF page 33)" class="card-screenshot" loading="lazy" decoding="async">
+                            <figcaption class="custom-card-caption">User Profile: Submitted questions and story history.</figcaption>
+                        </figure>
+                    </div>
+                </div>
+            </section>
+
+            
+            <!-- 17b. Conclusion / Key Takeaways -->
+            <section id="ending-thoughts" class="case-study-section section-conclusion"><a id="conclusion" aria-hidden="true" style="position:absolute;visibility:hidden;"></a>
+                <h2 class="section-heading">Ending Thoughts</h2>
+                <blockquote class="conclusion-pullquote">
+                    <p class="conclusion-quote-text">Slow Improvements bridges the divide between audio consumption and active personal reflection. By structuring intentional conversations and supporting them with an open, accessible digital platform, the project creates an ongoing, reflective experience guided by transparency and community participation.</p>
+                </blockquote>
+            </section>
+
+            <!-- 18. Other Projects Section -->
+            <section id="other-projects" class="case-study-section section-other-projects">
+                <h2 class="section-heading">Other Projects</h2>
+                <div class="carousel-container" id="other-projects-carousel" role="region" aria-label="Other projects carousel">
+                    <div class="carousel-controls">
+                        <button type="button" class="carousel-btn prev-btn" id="carousel-prev" aria-label="Previous project">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10 13L5 8l5-5"/></svg>
+                        </button>
+                        <button type="button" class="carousel-btn next-btn" id="carousel-next" aria-label="Next project">
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 13l5-5-5-5"/></svg>
+                        </button>
+                    </div>
+
+                    <div class="other-projects-track" id="other-projects-carousel" tabindex="0" role="region" aria-label="Other projects carousel">
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="isl-studio">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="isl-studio/index.html" class="card-hitbox" aria-label="View case study for ISL Studio">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/isl-studio-hero.jpg" alt="ISL Studio preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2026</span>
+                                        <span class="other-card-category">Digital Platform</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">ISL Studio</h3>
+                                    <p class="other-card-desc">A working Indian Sign Language practice platform combining webcam gesture recognition and interactive feedback for beginner ISL learners.</p>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="image-toolset">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="image-toolset/index.html" class="card-hitbox" aria-label="View case study for Image Toolset">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/image-tool-hero.jpg" alt="Image Toolset preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2026</span>
+                                        <span class="other-card-category">Creative Tool</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">Image Toolset</h3>
+                                    <p class="other-card-desc">An interactive image-making tool exploring variable-based visuals, creative experimentation and flexible visual treatments.</p>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="sikka">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="sikka/index.html" class="card-hitbox" aria-label="View case study for Sikka">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/UTaWoRlQBMZD1JHaFXtCsT88E.png" alt="Sikka preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2025</span>
+                                        <span class="other-card-category">Financial Literacy Platform</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">Sikka</h3>
+                                    <p class="other-card-desc">A Financial Literacy App designed to help young adults to know about finance literacy through games, fun articles, blogs, and reels.</p>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="talking-stage">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="talking-stage/index.html" class="card-hitbox" aria-label="View case study for Talking Stage">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/talking-stage-hero.jpg" alt="Talking Stage preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2024</span>
+                                        <span class="other-card-category">Board Game Design</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">Talking Stage</h3>
+                                    <p class="other-card-desc">A board game for 2–5 players that encourages people to get to know one another through questions, strategy and play.</p>
+                                </div>
+                            </a>
+                        </article>
+                        <article class="other-project-card glass-surface glass-surface--fallback" data-project="freshline">
+                            <span class="glass-surface__sheen" aria-hidden="true"></span><span class="glass-surface__rim" aria-hidden="true"></span>
+                            <a href="freshline/index.html" class="card-hitbox" aria-label="View case study for Freshline">
+                                <div class="other-card-image-wrap">
+                                    <img src="../framerusercontent.com/images/freshline-hero.jpg" alt="Freshline preview" class="other-card-image" loading="lazy" decoding="async">
+                                </div>
+                                <div class="other-card-content">
+                                    <div class="other-card-meta">
+                                        <span class="other-card-year">2024</span>
+                                        <span class="other-card-category">Service Design</span>
+                                        <span class="other-card-arrow" aria-hidden="true">↗</span>
+                                    </div>
+                                    <h3 class="other-card-title">Freshline</h3>
+                                    <p class="other-card-desc">This Vertical Farm Mobile Van business is designed to bridge the gap between locally grown, fresh produce and urban consumers, creating direct access between vertical farms and the community.</p>
+                                </div>
+                            </a>
+                        </article>
+                    </div>
+                </div>
+            </section>
+    <div id="footer-boundary" class="footer-boundary" aria-hidden="true"></div>
+        
+                <!-- Lightbox Modal for expandable carousel diagrams and images -->
+                <div class="carousel-lightbox-modal" id="slow-improvements-lightbox" role="dialog" aria-modal="true" aria-label="Expanded view of diagram">
+                    <div class="carousel-lightbox-content">
+                        <button type="button" class="carousel-lightbox-close" id="slow-improvements-lightbox-close" aria-label="Close enlarged view">&times;</button>
+                        <img src="" alt="Enlarged view of diagram" class="carousel-lightbox-img" id="slow-improvements-lightbox-img">
+                    </div>
+                </div>
+        </main>
+    </div>
+
+<!-- Global Portfolio Gradient Footer -->
+    <footer id="contact" class="portfolio-gradient-footer" role="contentinfo" aria-label="Website footer and contact">
+      <div class="footer-gradient-backdrop" aria-hidden="true">
+        <div class="footer-gradient-layer"></div>
+        <div class="footer-gradient-noise"></div>
+        <canvas id="footer-ascii-canvas" class="footer-ascii-canvas"></canvas>
+      </div>
+
+      <div class="footer-shell">
+        <div class="footer-top-grid">
+          <!-- Left Column: Short Closing Statement & Contact Note -->
+          <div class="footer-brand-col">
+            <h2 class="footer-closing-statement">Let's bring ideas to life.</h2>
+            <p class="footer-contact-note">Have an idea in mind? I'd love to hear about it. Reach out through email. I'm also open to freelance projects and creative collaborations.</p>
+          </div>
+
+          <!-- Right Column: Navigation & Connect -->
+          <div class="footer-nav-col footer-connect-col">
+            <div class="footer-links-group">
+              <span class="footer-group-heading">CONNECT</span>
+              <ul class="footer-nav-list">
+                <li>
+                  <a href="mailto:janya.malhotra2@gmail.com" class="footer-link">
+                    <span class="footer-link-icon">✉</span>
+                    <span>janya.malhotra2@gmail.com</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/in/janya-malhotra-2a85aa438" target="_blank" rel="noopener noreferrer" class="footer-link">
+                    <span class="footer-link-icon">↗</span>
+                    <span>LinkedIn</span>
+                  </a>
+                </li>
+                <li>
+                  <a href="../assets/Janya-Malhotra-Resume.pdf" target="_blank" rel="noopener noreferrer" download="Janya-Malhotra-Resume.pdf" class="footer-link footer-resume-link">
+                    <span class="footer-link-icon">↓</span>
+                    <span>Download Resume (PDF)</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Copyright -->
+        <div class="footer-bottom-row">
+          <div class="footer-copyright">
+            © <span id="footer-dynamic-year">2026</span> Janya Malhotra. All rights reserved.
+          </div>
+        </div>
+      </div>
+    </footer>
+
+
+    <!-- Interactive Scripts -->
+    <script>
+    (function() {
+        'use strict';
+
+        // 1. Top Reading Progress Bar
+        const progressBar = document.getElementById('case-study-progress');
+        function updateProgress() {
+            if (!progressBar) return;
+            const scrollY = window.scrollY || window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+            if (docHeight > 0) {
+                const pct = Math.min(100, Math.max(0, (scrollY / docHeight) * 100));
+                progressBar.style.width = pct.toFixed(2) + '%';
+            }
+        }
+        window.addEventListener('scroll', updateProgress, { passive: true });
+        updateProgress();
+
+        // 2. Active Section Tracking & TOC Synchronisation
+        const sections = Array.from(document.querySelectorAll('.case-study-section'));
+        const tocLinks = Array.from(document.querySelectorAll('.toc-link'));
+        const mobileLinks = Array.from(document.querySelectorAll('.mobile-toc-link'));
+
+        function setActive(id) {
+            tocLinks.forEach(link => {
+                if (link.getAttribute('href') === '#' + id) {
+                    link.classList.add('is-active');
+                } else {
+                    link.classList.remove('is-active');
+                }
+            });
+            mobileLinks.forEach(link => {
+                if (link.getAttribute('href') === '#' + id) {
+                    link.classList.add('is-active');
+                } else {
+                    link.classList.remove('is-active');
+                }
+            });
+        }
+
+        let isClickScrolling = false;
+        let clickScrollTimer = null;
+
+        function handleLinkClick(e) {
+            const href = this.getAttribute('href');
+            if (!href || !href.startsWith('#')) return;
+            const targetId = href.substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                e.preventDefault();
+                isClickScrolling = true;
+                setActive(targetId);
+                target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+
+                const drawer = document.getElementById('mobile-toc-drawer');
+                if (drawer) {
+                    drawer.classList.remove('is-open');
+                    drawer.setAttribute('aria-hidden', 'true');
+                }
+
+                clearTimeout(clickScrollTimer);
+                clickScrollTimer = setTimeout(() => {
+                    isClickScrolling = false;
+                }, 850);
+            }
+        }
+
+        tocLinks.forEach(link => link.addEventListener('click', handleLinkClick));
+        mobileLinks.forEach(link => link.addEventListener('click', handleLinkClick));
+
+        let ticking = false;
+        function onScroll() {
+            if (isClickScrolling) return;
+            if (!ticking) {
+                requestAnimationFrame(() => {
+                    updateActiveSection();
+                    ticking = false;
+                });
+                ticking = true;
+            }
+        }
+
+        function updateActiveSection() {
+            const scrollY = window.scrollY || window.pageYOffset;
+            const docHeight = document.documentElement.scrollHeight;
+            const winHeight = window.innerHeight;
+
+            // Near bottom of page: activate last section (conclusion)
+            if (scrollY + winHeight >= docHeight - 70) {
+                const lastContentSec = sections.filter(s => s.id !== 'other-projects').pop();
+                if (lastContentSec) {
+                    setActive(lastContentSec.id);
+                    return;
+                }
+            }
+
+            // Near top of page: activate first section (overview)
+            if (scrollY < 180 && sections[0]) {
+                setActive(sections[0].id);
+                return;
+            }
+
+            const headerOffset = 130;
+            let currentId = null;
+
+            for (let i = 0; i < sections.length; i++) {
+                const sec = sections[i];
+                if (sec.id === 'other-projects') continue;
+                const rect = sec.getBoundingClientRect();
+                if (rect.top <= headerOffset && rect.bottom > headerOffset) {
+                    currentId = sec.id;
+                    break;
+                }
+            }
+
+            if (!currentId) {
+                for (let i = sections.length - 1; i >= 0; i--) {
+                    const sec = sections[i];
+                    if (sec.id === 'other-projects') continue;
+                    const rect = sec.getBoundingClientRect();
+                    if (rect.top <= headerOffset) {
+                        currentId = sec.id;
+                        break;
+                    }
+                }
+            }
+
+            if (currentId) {
+                setActive(currentId);
+            }
+        }
+
+        window.addEventListener('scroll', onScroll, { passive: true });
+        updateActiveSection();
+
+        // 3. Mobile TOC Drawer Toggle
+        const toggleBtn = document.getElementById('mobile-toc-toggle');
+        const drawer = document.getElementById('mobile-toc-drawer');
+        if (toggleBtn && drawer) {
+            toggleBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isOpen = drawer.classList.toggle('is-open');
+                drawer.setAttribute('aria-hidden', (!isOpen).toString());
+            });
+
+            document.addEventListener('click', (e) => {
+                if (!drawer.contains(e.target) && e.target !== toggleBtn) {
+                    drawer.classList.remove('is-open');
+                    drawer.setAttribute('aria-hidden', 'true');
+                }
+            });
+        }
+
+        // 4. Standard Case Study Carousel Setup Helper
+        function setupCarousel(trackId, prevId, nextId, counterId, totalSlides) {
+            const track = document.getElementById(trackId);
+            const prev = document.getElementById(prevId);
+            const next = document.getElementById(nextId);
+            const counter = document.getElementById(counterId);
+            if (!track || !prev || !next) return;
+
+            const carousel = track.closest('.case-study-carousel');
+            let currentIndex = 0;
+
+            function update() {
+                track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                if (counter) {
+                    const curStr = String(currentIndex + 1).padStart(2, '0');
+                    const totStr = String(totalSlides).padStart(2, '0');
+                    counter.textContent = curStr + ' / ' + totStr;
+                }
+                prev.disabled = (currentIndex === 0);
+                next.disabled = (currentIndex === totalSlides - 1);
+            }
+
+            prev.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    update();
+                }
+            });
+
+            next.addEventListener('click', () => {
+                if (currentIndex < totalSlides - 1) {
+                    currentIndex++;
+                    update();
+                }
+            });
+
+            if (carousel) {
+                carousel.setAttribute('tabindex', '0');
+                carousel.addEventListener('keydown', (e) => {
+                    if (e.key === 'ArrowLeft') {
+                        e.preventDefault();
+                        if (currentIndex > 0) {
+                            currentIndex--;
+                            update();
+                        }
+                    } else if (e.key === 'ArrowRight') {
+                        e.preventDefault();
+                        if (currentIndex < totalSlides - 1) {
+                            currentIndex++;
+                            update();
+                        }
+                    }
+                });
+            }
+
+            // Touch Swipe
+            let startX = 0;
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0 && currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                        update();
+                    } else if (diff < 0 && currentIndex > 0) {
+                        currentIndex--;
+                        update();
+                    }
+                }
+            }, { passive: true });
+
+            update();
+        }
+
+        // 5. Tabbed Carousel Setup (Process Section)
+        function setupTabbedCarousel(carouselId, trackId, prevId, nextId, counterId, tabsHeaderId, totalSlides) {
+            const carousel = document.getElementById(carouselId);
+            const track = document.getElementById(trackId);
+            const prev = document.getElementById(prevId);
+            const next = document.getElementById(nextId);
+            const counter = document.getElementById(counterId);
+            const tabsHeader = document.getElementById(tabsHeaderId);
+            if (!carousel || !track || !prev || !next) return;
+
+            const tabs = tabsHeader ? Array.from(tabsHeader.querySelectorAll('.process-tab-btn')) : [];
+            let currentIndex = 0;
+
+            function update() {
+                track.style.transform = 'translateX(-' + (currentIndex * 100) + '%)';
+                if (counter) {
+                    const curStr = String(currentIndex + 1).padStart(2, '0');
+                    const totStr = String(totalSlides).padStart(2, '0');
+                    counter.textContent = curStr + ' / ' + totStr;
+                }
+                prev.disabled = (currentIndex === 0);
+                next.disabled = (currentIndex === totalSlides - 1);
+
+                tabs.forEach((tab, idx) => {
+                    if (idx === currentIndex) {
+                        tab.classList.add('is-active');
+                        tab.setAttribute('aria-selected', 'true');
+                    } else {
+                        tab.classList.remove('is-active');
+                        tab.setAttribute('aria-selected', 'false');
+                    }
+                });
+            }
+
+            tabs.forEach((tab, idx) => {
+                tab.addEventListener('click', () => {
+                    currentIndex = idx;
+                    update();
+                });
+            });
+
+            prev.addEventListener('click', () => {
+                if (currentIndex > 0) {
+                    currentIndex--;
+                    update();
+                }
+            });
+
+            next.addEventListener('click', () => {
+                if (currentIndex < totalSlides - 1) {
+                    currentIndex++;
+                    update();
+                }
+            });
+
+            carousel.setAttribute('tabindex', '0');
+            carousel.addEventListener('keydown', (e) => {
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    if (currentIndex > 0) {
+                        currentIndex--;
+                        update();
+                    }
+                } else if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    if (currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                        update();
+                    }
+                }
+            });
+
+            // Touch Swipe
+            let startX = 0;
+            track.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+            }, { passive: true });
+
+            track.addEventListener('touchend', (e) => {
+                const diff = startX - e.changedTouches[0].clientX;
+                if (Math.abs(diff) > 40) {
+                    if (diff > 0 && currentIndex < totalSlides - 1) {
+                        currentIndex++;
+                        update();
+                    } else if (diff < 0 && currentIndex > 0) {
+                        currentIndex--;
+                        update();
+                    }
+                }
+            }, { passive: true });
+
+            update();
+        }
+
+        // Initialize Carousels
+        setupTabbedCarousel('process-carousel', 'process-carousel-track', 'process-carousel-prev', 'process-carousel-next', 'process-carousel-counter', 'process-tabs', 5);
+        setupCarousel('ideation-carousel-track', 'ideation-carousel-prev', 'ideation-carousel-next', 'ideation-carousel-counter', 5);
+        setupCarousel('inspirations-carousel-track', 'inspirations-carousel-prev', 'inspirations-carousel-next', 'inspirations-carousel-counter', 3);
+        setupCarousel('episode-carousel-track', 'episode-carousel-prev', 'episode-carousel-next', 'episode-carousel-counter', 3);
+
+        // --- Shared Carousel Lightbox Functionality ---
+        (function() {
+            const lightbox = document.getElementById('slow-improvements-lightbox');
+            const lightboxImg = document.getElementById('slow-improvements-lightbox-img');
+            const closeBtn = document.getElementById('slow-improvements-lightbox-close');
+            if (!lightbox || !lightboxImg) return;
+
+            function openLightbox(src, alt) {
+                if (!src) return;
+                lightboxImg.src = src;
+                lightboxImg.alt = alt || 'Enlarged diagram';
+                lightbox.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeLightbox();
+                });
+            }
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && lightbox.classList.contains('is-open')) {
+                    closeLightbox();
+                }
+            });
+
+            // Target the 4 specific carousels:
+            // 1. Engagement Framework (#process-carousel)
+            // 2. Podcast Ideation (#ideation-carousel)
+            // 3. Inspirations and Brand Direction (#inspirations-carousel)
+            // 4. Episode Structure (#episode-carousel)
+            const targetCarouselIds = [
+                'process-carousel',
+                'ideation-carousel',
+                'inspirations-carousel',
+                'episode-carousel'
+            ];
+
+            targetCarouselIds.forEach(id => {
+                const carousel = document.getElementById(id);
+                if (!carousel) return;
+
+                const slides = carousel.querySelectorAll('.carousel-slide');
+                slides.forEach(slide => {
+                    const img = slide.querySelector('.carousel-slide-image');
+                    const zoomBtn = slide.querySelector('.carousel-slide-zoom-hint');
+
+                    if (img) {
+                        img.style.cursor = 'zoom-in';
+                        img.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            openLightbox(img.src, img.alt);
+                        });
+                    }
+
+                    if (zoomBtn && img) {
+                        zoomBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            openLightbox(img.src, img.alt);
+                        });
+                    }
+                });
+            });
+        })();
+
+        // 6. Other Projects Horizontal Scroll Navigation
+        const otherTrack = document.getElementById('other-projects-track');
+        const otherPrev = document.getElementById('carousel-prev');
+        const otherNext = document.getElementById('carousel-next');
+
+        if (otherTrack && otherPrev && otherNext) {
+            otherPrev.addEventListener('click', () => {
+                otherTrack.scrollBy({ left: -320, behavior: 'smooth' });
+            });
+            otherNext.addEventListener('click', () => {
+                otherTrack.scrollBy({ left: 320, behavior: 'smooth' });
+            });
+        }
+    })();
+</script>
+<script src="../assets/js/global-audio.js"></script>
+    <script src="../assets/js/global-nav.js"></script>
+    <script src="../assets/js/footer-ascii.js"></script>
+  <script src="../assets/js/lightbox.js"></script>
+</body>
+</html>

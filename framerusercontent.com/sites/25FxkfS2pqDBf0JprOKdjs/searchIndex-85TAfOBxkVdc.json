@@ -1,0 +1,74 @@
+{
+  "/about": {
+    "version": 1,
+    "title": "Janya Malhotra's Portfolio",
+    "description": "Made with Framer",
+    "keywords": "",
+    "h1": [],
+    "h2": [],
+    "h3": [
+      "Freshline",
+      "Talking Stage",
+      "Sikka",
+      "Slow Improvements",
+      "ISL Studio",
+      "Image Toolset"
+    ],
+    "h4": [],
+    "h5": [],
+    "h6": [],
+    "p": [
+      "PROJECTS",
+      "ABOUT ME",
+      "CONTACT",
+      "Create a free website with Framer, the website builder loved by startups, designers and agencies."
+    ],
+    "codeblock": [],
+    "url": "/about"
+  },
+  "/": {
+    "version": 1,
+    "title": "Janya Malhotra's Portfolio",
+    "description": "Made with Framer",
+    "keywords": "",
+    "h1": [
+      "JanyaMalhotra"
+    ],
+    "h2": [
+      "Freshline: Vertical Farming Produce on Wheels",
+      "Talking Stage: Conversation Board Game",
+      "Sikka: Financial Literacy and Money Management App",
+      "Slow Improvements: Mindfulness Podcast and Companion Platform",
+      "ISL Studio: Indian Sign Language Practice Platform",
+      "Image Toolset: Experimental Image-Making Toolkit"
+    ],
+    "h3": [],
+    "h4": [],
+    "h5": [],
+    "h6": [],
+    "p": [
+      "I'm a human-centred designer interested in the space between what people need and what they're drawn to. I look beyond expressed wants to understand the needs beneath them, exploring how design can make addressing those needs feel natural, relevant and desirable.",
+      "PROJECTS",
+      "ABOUT ME",
+      "CONTACT",
+      "HUMAN-CENTERED DESIGN \u00b7 UI / UX \u00b7 SYSTEMS THINKING",
+      "An interactive platform for practising and improving Indian Sign Language.",
+      "A gesture-recognition learning experience that allows users to practise signs, receive feedback and build confidence through repeated interaction.",
+      "An interactive tool for exploring generative image-making.",
+      "An experimental image-making interface that explores creative visual generation, manipulation and interaction.",
+      "A digital space for mindful listening and reflection.",
+      "A podcast experience designed around mindfulness, reflection and finding balance through audio content.",
+      "Making financial learning and money management more accessible.",
+      "A financial literacy platform that makes learning about money, budgeting and financial decisions more accessible.",
+      "Redesigning the checkout experience to reduce friction.",
+      "A checkout redesign focused on improving the purchasing journey by reducing friction and making the experience clearer and more user-friendly.",
+      "Digital Social Experience",
+      "A design exploration of how communication shapes digital relationships.",
+      "An Exploration of Fresh Food and Retail Experiences",
+      "A design exploration of how people experience fresh food and retail.",
+      "Create a free website with Framer, the website builder loved by startups, designers and agencies."
+    ],
+    "codeblock": [],
+    "url": "/"
+  }
+}

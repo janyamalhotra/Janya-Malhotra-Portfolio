@@ -1,0 +1,57 @@
+{
+  "/about": {
+    "version": 1,
+    "title": "Janya Malhotra's Portfolio",
+    "description": "Made with Framer",
+    "keywords": "",
+    "h1": [],
+    "h2": [],
+    "h3": [],
+    "h4": [],
+    "h5": [],
+    "h6": [],
+    "p": [
+      "PROJECTS",
+      "ABOUT ME",
+      "CONTACT",
+      "Create a free website with Framer, the website builder loved by startups, designers and agencies."
+    ],
+    "codeblock": [],
+    "url": "/about"
+  },
+  "/": {
+    "version": 1,
+    "title": "Janya Malhotra's Portfolio",
+    "description": "Made with Framer",
+    "keywords": "",
+    "h1": [
+      "JanyaMalhotra"
+    ],
+    "h2": [
+      "ISL Studio: Indian Sign Language Practice Platform"
+    ],
+    "h3": [
+      "ISL Studio",
+      "Image Toolset",
+      "Slow Improvements",
+      "Sikka",
+      "Talking Stage",
+      "Freshline"
+    ],
+    "h4": [],
+    "h5": [],
+    "h6": [],
+    "p": [
+      "PROJECTS",
+      "ABOUT ME",
+      "CONTACT",
+      "I design experiences that create meaningful effects.",
+      "HUMAN-CENTERED DESIGN \u00b7 UI / UX \u00b7 SYSTEMS THINKING",
+      "Project 1  / 7",
+      "A platform for practising and improving Indian Sign Language through interactive learning and gesture-recognition experiences.",
+      "Create a free website with Framer, the website builder loved by startups, designers and agencies."
+    ],
+    "codeblock": [],
+    "url": "/"
+  }
+}

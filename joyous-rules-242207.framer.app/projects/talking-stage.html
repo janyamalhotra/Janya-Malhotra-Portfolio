@@ -1061,6 +1061,136 @@
                 flex: 0 0 260px;
             }
         }
+
+        .rulebook-slide-frame {
+            position: relative;
+        }
+
+        .rulebook-page-img {
+            cursor: zoom-in;
+        }
+
+        .bts-slide-image-wrap {
+            position: relative;
+        }
+
+        .carousel-slide-image {
+            cursor: zoom-in;
+        }
+
+        .carousel-slide-zoom-hint {
+            position: absolute;
+            bottom: 16px;
+            right: 16px;
+            background: rgba(255, 255, 255, 0.92);
+            border: 1px solid var(--border-subtle);
+            border-radius: 20px;
+            padding: 6px 14px;
+            font-size: 12px;
+            font-weight: 550;
+            color: var(--ink-secondary);
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+            transition: all 0.2s ease;
+            backdrop-filter: blur(4px);
+            -webkit-backdrop-filter: blur(4px);
+            z-index: 5;
+        }
+
+        .carousel-slide-zoom-hint:hover {
+            background: #ffffff;
+            color: var(--project-accent);
+            border-color: var(--project-accent);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 14px rgba(0,0,0,0.12);
+        }
+
+        /* --- LIGHTBOX MODAL --- */
+        .carousel-lightbox-modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(18, 26, 18, 0.88);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            z-index: 99999;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 24px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.25s ease;
+        }
+
+        .carousel-lightbox-modal.is-open {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        .carousel-lightbox-content {
+            position: relative;
+            max-width: 95vw;
+            max-height: 90vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .carousel-lightbox-img {
+            max-width: 100%;
+            max-height: 85vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            background: #ffffff;
+        }
+
+        .carousel-lightbox-close {
+            position: absolute;
+            top: -44px;
+            right: 0;
+            background: rgba(255, 255, 255, 0.2);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            color: #ffffff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            font-size: 22px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .carousel-lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.4);
+            transform: scale(1.1);
+        }
+
+        @media (max-width: 768px) {
+            .carousel-lightbox-modal {
+                padding: 16px;
+            }
+            .carousel-lightbox-close {
+                top: -40px;
+                right: 0;
+                width: 32px;
+                height: 32px;
+                font-size: 20px;
+            }
+            .carousel-slide-zoom-hint {
+                bottom: 10px;
+                right: 10px;
+                padding: 4px 10px;
+                font-size: 11px;
+            }
+        }
+
     </style>
     <link rel="stylesheet" href="../assets/css/global-nav.css">
     <link rel="stylesheet" href="../assets/css/global-footer.css">
@@ -1244,6 +1374,10 @@
                             <div class="rulebook-slide is-active" data-index="0" role="group" aria-roledescription="slide" aria-label="Page 1 of 4: Overview &amp; Game Setup">
                                 <div class="rulebook-slide-frame">
                                     <img src="../../framerusercontent.com/images/talking-stage-rulebook-page-1.jpg" alt="Talking Stage Rule Book - Page 1: Overview &amp; Game Setup" class="rulebook-page-img" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                             </div>
 
@@ -1251,6 +1385,10 @@
                             <div class="rulebook-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="Page 2 of 4: Question &amp; Dare Tile Rules">
                                 <div class="rulebook-slide-frame">
                                     <img src="../../framerusercontent.com/images/talking-stage-rulebook-page-4.jpg" alt="Talking Stage Rule Book - Page 2: Question &amp; Dare Tile Rules" class="rulebook-page-img" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                             </div>
 
@@ -1258,6 +1396,10 @@
                             <div class="rulebook-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="Page 3 of 4: Drowning Tile Rules">
                                 <div class="rulebook-slide-frame">
                                     <img src="../../framerusercontent.com/images/talking-stage-rulebook-page-2.jpg" alt="Talking Stage Rule Book - Page 3: Drowning Tile Rules" class="rulebook-page-img" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                             </div>
 
@@ -1265,6 +1407,10 @@
                             <div class="rulebook-slide" data-index="3" role="group" aria-roledescription="slide" aria-label="Page 4 of 4: Frequently Asked Questions">
                                 <div class="rulebook-slide-frame">
                                     <img src="../../framerusercontent.com/images/talking-stage-rulebook-page-3.jpg" alt="Talking Stage Rule Book - Page 4: Frequently Asked Questions" class="rulebook-page-img" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -1378,6 +1524,10 @@
                             <div class="carousel-slide is-active" data-index="0" role="group" aria-roledescription="slide" aria-label="Slide 1 of 7: Initial Board Concept / Ideation Sketch">
                                 <div class="carousel-slide-image-wrap bts-slide-image-wrap">
                                     <img src="../../framerusercontent.com/images/talking-stage-bts-01-ideation.jpg" alt="Initial hand-drawn pencil ideation sketch of the Talking Stage board layout" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                                 <div class="carousel-slide-info">
                                     <h4 class="carousel-slide-title">Initial Board Concept / Ideation Sketch</h4>
@@ -1389,6 +1539,10 @@
                             <div class="carousel-slide" data-index="1" role="group" aria-roledescription="slide" aria-label="Slide 2 of 7: Route &amp; Step Calculation">
                                 <div class="carousel-slide-image-wrap bts-slide-image-wrap">
                                     <img src="../../framerusercontent.com/images/talking-stage-bts-02-layout-sketch.jpg" alt="Pencil diagram calculating step routes, directional arrows, and board grid turns" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                                 <div class="carousel-slide-info">
                                     <h4 class="carousel-slide-title">Route &amp; Step Calculation</h4>
@@ -1400,6 +1554,10 @@
                             <div class="carousel-slide" data-index="2" role="group" aria-roledescription="slide" aria-label="Slide 3 of 7: Precision Laser Cutting">
                                 <div class="carousel-slide-image-wrap bts-slide-image-wrap">
                                     <img src="../../framerusercontent.com/images/talking-stage-bts-03-laser-cutting.jpg" alt="Laser cutting machine cutting precision acrylic and wood tiles for the board game" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                                 <div class="carousel-slide-info">
                                     <h4 class="carousel-slide-title">Precision Laser Cutting</h4>
@@ -1411,6 +1569,10 @@
                             <div class="carousel-slide" data-index="3" role="group" aria-roledescription="slide" aria-label="Slide 4 of 7: Tile Distribution &amp; Path Mapping">
                                 <div class="carousel-slide-image-wrap bts-slide-image-wrap">
                                     <img src="../../framerusercontent.com/images/talking-stage-bts-04-tile-strategy.jpg" alt="Tiles arranged on blue board base with green crosses and red question marks" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                                 <div class="carousel-slide-info">
                                     <h4 class="carousel-slide-title">Tile Distribution &amp; Path Mapping</h4>
@@ -1422,6 +1584,10 @@
                             <div class="carousel-slide" data-index="4" role="group" aria-roledescription="slide" aria-label="Slide 5 of 7: Physical Assembly &amp; Stacking">
                                 <div class="carousel-slide-image-wrap bts-slide-image-wrap">
                                     <img src="../../framerusercontent.com/images/talking-stage-bts-05-building-board.jpg" alt="Hands carefully placing colored wooden tiles onto the board surface during assembly" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                                 <div class="carousel-slide-info">
                                     <h4 class="carousel-slide-title">Physical Assembly &amp; Stacking</h4>
@@ -1433,6 +1599,10 @@
                             <div class="carousel-slide" data-index="5" role="group" aria-roledescription="slide" aria-label="Slide 6 of 7: Track Arrangement &amp; Finishing">
                                 <div class="carousel-slide-image-wrap bts-slide-image-wrap">
                                     <img src="../../framerusercontent.com/images/talking-stage-bts-06-refining-layout.jpg" alt="Completed tile arrangement across the sky-blue board base inspected for alignment" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                                 <div class="carousel-slide-info">
                                     <h4 class="carousel-slide-title">Track Arrangement &amp; Finishing</h4>
@@ -1444,6 +1614,10 @@
                             <div class="carousel-slide" data-index="6" role="group" aria-roledescription="slide" aria-label="Slide 7 of 7: Final Board Game">
                                 <div class="carousel-slide-image-wrap bts-slide-image-wrap">
                                     <img src="../../framerusercontent.com/images/talking-stage-bts-07-final-game.jpg" alt="Photograph of the completed physical Talking Stage board game" class="carousel-slide-image bts-slide-image" loading="lazy" decoding="async" style="object-fit: contain; object-position: center; max-height: 100%; width: auto; margin: auto;">
+                                                                    <button type="button" class="carousel-slide-zoom-hint" aria-label="Click to expand image">
+                                        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line><line x1="11" y1="8" x2="11" y2="14"></line><line x1="8" y1="11" x2="14" y2="11"></line></svg>
+                                        <span>Click to expand</span>
+                                    </button>
                                 </div>
                                 <div class="carousel-slide-info">
                                     <h4 class="carousel-slide-title">Final Board Game</h4>
@@ -1590,6 +1764,14 @@
                 </div>
             </section>
     <div id="footer-boundary" class="footer-boundary" aria-hidden="true"></div>
+
+        <!-- Lightbox Modal for expandable carousel diagrams and images -->
+        <div class="carousel-lightbox-modal" id="talking-stage-lightbox" role="dialog" aria-modal="true" aria-label="Expanded view of diagram">
+            <div class="carousel-lightbox-content">
+                <button type="button" class="carousel-lightbox-close" id="talking-stage-lightbox-close" aria-label="Close enlarged view">&times;</button>
+                <img src="" alt="Enlarged view of diagram" class="carousel-lightbox-img" id="talking-stage-lightbox-img">
+            </div>
+        </div>
         </main>
     </div>
 
@@ -1986,6 +2168,129 @@
                     else updateSlide(currentIndex - 1);
                 }
             }, { passive: true });
+        })();
+
+        // --- Shared Carousel Lightbox Functionality ---
+        (function() {
+            const lightbox = document.getElementById('talking-stage-lightbox');
+            const lightboxImg = document.getElementById('talking-stage-lightbox-img');
+            const closeBtn = document.getElementById('talking-stage-lightbox-close');
+            if (!lightbox || !lightboxImg) return;
+
+            let currentImages = [];
+            let currentIdx = 0;
+
+            function openLightbox(src, alt, list, idx) {
+                if (!src) return;
+                lightboxImg.src = src;
+                lightboxImg.alt = alt || 'Enlarged diagram';
+                if (list && list.length) {
+                    currentImages = list;
+                    currentIdx = idx || 0;
+                } else {
+                    currentImages = [{ src: src, alt: alt }];
+                    currentIdx = 0;
+                }
+                lightbox.classList.add('is-open');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeLightbox() {
+                lightbox.classList.remove('is-open');
+                document.body.style.overflow = '';
+            }
+
+            if (closeBtn) {
+                closeBtn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    closeLightbox();
+                });
+            }
+
+            lightbox.addEventListener('click', (e) => {
+                if (e.target === lightbox) {
+                    closeLightbox();
+                }
+            });
+
+            document.addEventListener('keydown', (e) => {
+                if (!lightbox.classList.contains('is-open')) return;
+                if (e.key === 'Escape') {
+                    closeLightbox();
+                } else if (e.key === 'ArrowLeft' && currentImages.length > 1) {
+                    currentIdx = (currentIdx - 1 + currentImages.length) % currentImages.length;
+                    lightboxImg.src = currentImages[currentIdx].src;
+                    lightboxImg.alt = currentImages[currentIdx].alt || 'Enlarged diagram';
+                } else if (e.key === 'ArrowRight' && currentImages.length > 1) {
+                    currentIdx = (currentIdx + 1) % currentImages.length;
+                    lightboxImg.src = currentImages[currentIdx].src;
+                    lightboxImg.alt = currentImages[currentIdx].alt || 'Enlarged diagram';
+                }
+            });
+
+            // 1. Rule Book Carousel (#rulebook-viewer)
+            const rulebookViewer = document.getElementById('rulebook-viewer');
+            if (rulebookViewer) {
+                const rbSlides = rulebookViewer.querySelectorAll('.rulebook-slide');
+                const rbImageList = [];
+                rbSlides.forEach((slide) => {
+                    const img = slide.querySelector('img');
+                    if (img) rbImageList.push({ src: img.src, alt: img.alt });
+                });
+
+                rbSlides.forEach((slide, idx) => {
+                    const img = slide.querySelector('img');
+                    const zoomBtn = slide.querySelector('.carousel-slide-zoom-hint');
+
+                    if (img) {
+                        img.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            openLightbox(img.src, img.alt, rbImageList, idx);
+                        });
+                    }
+
+                    if (zoomBtn && img) {
+                        zoomBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            openLightbox(img.src, img.alt, rbImageList, idx);
+                        });
+                    }
+                });
+            }
+
+            // 2. Behind the Scenes Carousel (#bts-carousel)
+            const btsCarousel = document.getElementById('bts-carousel');
+            if (btsCarousel) {
+                const btsSlides = btsCarousel.querySelectorAll('.carousel-slide');
+                const btsImageList = [];
+                btsSlides.forEach((slide) => {
+                    const img = slide.querySelector('img');
+                    if (img) btsImageList.push({ src: img.src, alt: img.alt });
+                });
+
+                btsSlides.forEach((slide, idx) => {
+                    const img = slide.querySelector('img');
+                    const zoomBtn = slide.querySelector('.carousel-slide-zoom-hint');
+
+                    if (img) {
+                        img.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            openLightbox(img.src, img.alt, btsImageList, idx);
+                        });
+                    }
+
+                    if (zoomBtn && img) {
+                        zoomBtn.addEventListener('click', (e) => {
+                            e.stopPropagation();
+                            e.preventDefault();
+                            openLightbox(img.src, img.alt, btsImageList, idx);
+                        });
+                    }
+                });
+            }
         })();
     })();
 </script>
